@@ -62,13 +62,13 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 7. Integration verification
 
-- [ ] 7.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
-- [ ] 7.2 From a fresh clone with `docker compose up --build`, against the real PokeAPI:
+- [x] 7.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
+- [x] 7.2 From a fresh clone with `docker compose up --build`, against the real PokeAPI:
   - `/api/v1/pokemon/1`, `/eevee`, `/PIKACHU`, `/ditto`
   - `/missingno` → 404; `/pika%20chu` → 400
   - record response times
   - Verify: as in the spec; `docker compose down -v`.
-- [ ] 7.3 Run `openspec validate add-pokemon-detail --strict` and gitleaks. Verify: valid, no leaks.
+- [x] 7.3 Run `openspec validate add-pokemon-detail --strict` and gitleaks. Verify: valid, no leaks.
 
 ## Workflow follow-up
 
