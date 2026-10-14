@@ -53,7 +53,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - `pika chu`, `<script>`, `0`, `-1`, 51 characters → 400 `errors[idOrName]` without calling the use case
   - unavailable → 503
   - Verify: red.
-- [ ] 5.2 Implement the detail endpoint, `PokemonDetailResponse`/`BaseStatsResponse`/`EvolutionStageResponse`, the mapper additions, the 404 mapping, and the `GetPokemonDetail` bean wiring. Verify: 5.1 green.
+- [x] 5.2 Implement the detail endpoint, `PokemonDetailResponse`/`BaseStatsResponse`/`EvolutionStageResponse`, the mapper additions, the 404 mapping, and the `GetPokemonDetail` bean wiring. Verify: 5.1 green.
 
 ## 6. End-to-end and docs
 
