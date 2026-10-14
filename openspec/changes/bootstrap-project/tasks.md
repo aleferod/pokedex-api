@@ -52,7 +52,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 4. Error contract (api-errors)
 
-- [ ] 4.1 Write `GlobalExceptionHandlerTest` (`@WebMvcTest` with a test-only controller):
+- [x] 4.1 Write `GlobalExceptionHandlerTest` (`@WebMvcTest` with a test-only controller):
   - unknown route → 404 problem+json with all members and `errors: []`
   - `DELETE` on a GET-only route → 405 with `Allow`
   - unexpected `RuntimeException` → 500, generic detail, no class name, message or trace in the body
