@@ -34,7 +34,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 3. Request correlation (request-correlation)
 
-- [ ] 3.1 Write `CorrelationIdFilterTest` (unit, `MockHttpServletRequest`/`Response`) covering:
+- [x] 3.1 Write `CorrelationIdFilterTest` (unit, `MockHttpServletRequest`/`Response`) covering:
   - valid id echoed
   - missing id → UUID
   - 65-char id → UUID
