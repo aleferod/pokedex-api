@@ -39,7 +39,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - username lookup is case-insensitive
   - Verify: red.
 - [x] 3.3 Write `GetCurrentUserUseCaseTest`: found → user; missing → `UserNotFoundException`. Verify: red.
-- [ ] 3.4 Implement the ports (`RegisterUser`, `AuthenticateUser`, `GetCurrentUser`, `UserRepositoryPort`, `PasswordHasherPort`, `TokenPort`, `IssuedToken`) and the three use cases (D3). Verify: 3.1–3.3 green; JaCoCo gate on domain + application ≥ 85 %.
+- [x] 3.4 Implement the ports (`RegisterUser`, `AuthenticateUser`, `GetCurrentUser`, `UserRepositoryPort`, `PasswordHasherPort`, `TokenPort`, `IssuedToken`) and the three use cases (D3). Verify: 3.1–3.3 green; JaCoCo gate on domain + application ≥ 85 %.
 
 ## 4. Persistence
 
