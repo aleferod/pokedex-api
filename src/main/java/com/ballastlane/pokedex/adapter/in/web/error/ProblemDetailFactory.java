@@ -47,7 +47,8 @@ public class ProblemDetailFactory {
 
   /** A problem for an arbitrary HTTP status, typed by {@link ProblemType#forStatus(int)}. */
   public ProblemDetail forStatus(int status, String detail, String path) {
-    ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(status), detail);
+    ProblemDetail problem =
+        ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(status), detail);
     return complete(problem, ProblemType.forStatus(status), path, List.of());
   }
 

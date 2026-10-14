@@ -7,8 +7,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Browser origins allowed to call the API cross-origin ({@code app.cors.allowed-origins}, from
  * {@code APP_CORS_ALLOWED_ORIGINS}). Value object: the compact constructor rejects wildcards and
- * anything that is not a plain {@code scheme://host[:port]} origin, so a misconfiguration stops
- * the application at startup instead of silently opening the API to every site.
+ * anything that is not a plain {@code scheme://host[:port]} origin, so a misconfiguration stops the
+ * application at startup instead of silently opening the API to every site.
  */
 @ConfigurationProperties("app.cors")
 public record CorsProperties(List<String> allowedOrigins) {

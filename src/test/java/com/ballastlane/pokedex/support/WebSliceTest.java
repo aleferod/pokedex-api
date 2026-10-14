@@ -16,9 +16,9 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
- * {@code @WebMvcTest} plus the application's cross-cutting web components (filters, error
- * handling, CORS, clock), so every web slice test runs the same request pipeline as production, under
- * the {@code test} profile.
+ * {@code @WebMvcTest} plus the application's cross-cutting web components (filters, error handling,
+ * CORS, clock), so every web slice test runs the same request pipeline as production, under the
+ * {@code test} profile.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

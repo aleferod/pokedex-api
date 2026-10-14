@@ -76,7 +76,8 @@ class OperationalEndpointsIT {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"/actuator/env", "/actuator/beans", "/actuator/configprops", "/actuator/heapdump"})
+  @ValueSource(
+      strings = {"/actuator/env", "/actuator/beans", "/actuator/configprops", "/actuator/heapdump"})
   void should_return404ProblemDetail_when_sensitiveEndpointIsRequested(String endpoint) {
     client
         .get()

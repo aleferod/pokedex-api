@@ -27,7 +27,10 @@ class CorrelationIdLoggingTest {
   @Test
   void should_includeCorrelationId_when_logWrittenDuringRequest(CapturedOutput output) {
     // When
-    mvc.get().uri("/test/log?marker=during-request").header(CorrelationIdFilter.HEADER, "demo-log").exchange();
+    mvc.get()
+        .uri("/test/log?marker=during-request")
+        .header(CorrelationIdFilter.HEADER, "demo-log")
+        .exchange();
 
     // Then
     assertThat(linesContaining(output, "marker=during-request"))
@@ -52,13 +55,19 @@ class CorrelationIdLoggingTest {
   @Test
   void should_notLeakPreviousId_when_nextRequestRunsOnSameThread(CapturedOutput output) {
     // Given a first request handled on this (MockMvc) thread
-    mvc.get().uri("/test/log?marker=first").header(CorrelationIdFilter.HEADER, "first-request-id").exchange();
+    mvc.get()
+        .uri("/test/log?marker=first")
+        .header(CorrelationIdFilter.HEADER, "first-request-id")
+        .exchange();
 
     // When a second request without id runs on the same thread
     mvc.get().uri("/test/log?marker=second").exchange();
 
     // Then
-    assertThat(linesContaining(output, "marker=first")).singleElement().asString().contains("first-request-id");
+    assertThat(linesContaining(output, "marker=first"))
+        .singleElement()
+        .asString()
+        .contains("first-request-id");
     assertThat(linesContaining(output, "marker=second"))
         .singleElement()
         .asString()

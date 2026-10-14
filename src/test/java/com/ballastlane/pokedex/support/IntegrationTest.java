@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
- * Full application on a random port, {@code test} profile, real PostgreSQL via Testcontainers and
- * a {@code RestTestClient} bound to the running server.
+ * Full application on a random port, {@code test} profile, real PostgreSQL via Testcontainers and a
+ * {@code RestTestClient} bound to the running server.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * Single error translator for the API (RFC 7807).
  *
- * <p>Template Method: {@link ResponseEntityExceptionHandler} already maps every Spring MVC exception
- * (404, 405, 415, 400, ...) to a {@link ProblemDetail}; we override its final hook {@link
+ * <p>Template Method: {@link ResponseEntityExceptionHandler} already maps every Spring MVC
+ * exception (404, 405, 415, 400, ...) to a {@link ProblemDetail}; we override its final hook {@link
  * #createResponseEntity} so each of those problems is completed with our members. Anything
  * unexpected becomes a generic 500 that leaks nothing and is logged with its stack trace.
  */

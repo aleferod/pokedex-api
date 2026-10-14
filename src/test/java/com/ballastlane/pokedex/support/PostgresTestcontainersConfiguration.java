@@ -8,8 +8,8 @@ import org.testcontainers.utility.DockerImageName;
 
 /**
  * A real PostgreSQL 16 for tests (never an in-memory substitute). {@code @ServiceConnection} wires
- * the datasource; Spring's test context cache shares the container across test classes that use
- * the same configuration.
+ * the datasource; Spring's test context cache shares the container across test classes that use the
+ * same configuration.
  */
 @TestConfiguration(proxyBeanMethods = false)
 public class PostgresTestcontainersConfiguration {

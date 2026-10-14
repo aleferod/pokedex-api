@@ -41,7 +41,8 @@ class ProfileConfigurationTest {
           assertThat(environment.getDefaultProfiles()).containsExactly("local");
           // Value may come from a developer's .env (imported by the local profile), so only the
           // driver is asserted here; the docker test pins the exact default URL.
-          assertThat(environment.getProperty("spring.datasource.url")).startsWith("jdbc:postgresql://");
+          assertThat(environment.getProperty("spring.datasource.url"))
+              .startsWith("jdbc:postgresql://");
           assertThat(environment.getPropertySources().stream().map(PropertySource::getName))
               .anySatisfy(name -> assertThat(name).contains("application-local.yml"));
         });

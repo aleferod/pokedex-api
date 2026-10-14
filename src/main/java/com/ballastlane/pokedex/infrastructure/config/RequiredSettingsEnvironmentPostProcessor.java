@@ -6,10 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
- * Stops startup before any bean is created when a required setting has no value, naming the
- * missing variable. Without it, Spring's binder keeps an unresolved {@code ${DB_PASSWORD}} as the
- * literal password and the problem only surfaces later as a misleading database authentication
- * error. The {@code test} profile is exempt: Testcontainers supplies the connection there.
+ * Stops startup before any bean is created when a required setting has no value, naming the missing
+ * variable. Without it, Spring's binder keeps an unresolved {@code ${DB_PASSWORD}} as the literal
+ * password and the problem only surfaces later as a misleading database authentication error. The
+ * {@code test} profile is exempt: Testcontainers supplies the connection there.
  */
 public class RequiredSettingsEnvironmentPostProcessor implements EnvironmentPostProcessor {
 

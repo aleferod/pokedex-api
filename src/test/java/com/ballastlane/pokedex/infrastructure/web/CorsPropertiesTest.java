@@ -36,7 +36,12 @@ class CorsPropertiesTest {
 
   @ParameterizedTest
   @ValueSource(
-      strings = {"localhost:5173", "http://localhost:5173/app", "ftp://files.example", "http://a.example,,http://b.example"})
+      strings = {
+        "localhost:5173",
+        "http://localhost:5173/app",
+        "ftp://files.example",
+        "http://a.example,,http://b.example"
+      })
   void should_rejectConfiguration_when_originIsMalformedOrBlank(String origins) {
     assertThatThrownBy(() -> bind(origins))
         .isInstanceOf(BindException.class)

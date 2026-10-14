@@ -33,11 +33,14 @@ class ProblemDetailErrorControllerTest {
             .uri("/error")
             .requestAttr(RequestDispatcher.ERROR_STATUS_CODE, 400)
             .requestAttr(RequestDispatcher.ERROR_REQUEST_URI, "/api/v1/rejected")
-            .requestAttr(RequestDispatcher.ERROR_MESSAGE, "Invalid character found in the request target")
+            .requestAttr(
+                RequestDispatcher.ERROR_MESSAGE, "Invalid character found in the request target")
             .exchange();
 
     // Then
-    assertThat(result).hasStatus(HttpStatus.BAD_REQUEST).hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
+    assertThat(result)
+        .hasStatus(HttpStatus.BAD_REQUEST)
+        .hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
     assertThat(result)
         .bodyJson()
         .extractingPath("$")
@@ -45,7 +48,11 @@ class ProblemDetailErrorControllerTest {
         .containsOnlyKeys("type", "title", "status", "detail", "instance", "timestamp", "errors");
     assertThat(result).bodyJson().extractingPath("$.type").asString().endsWith("#bad-request");
     assertThat(result).bodyJson().extractingPath("$.instance").isEqualTo("/api/v1/rejected");
-    assertThat(result).bodyJson().extractingPath("$.detail").asString().doesNotContain("Invalid character");
+    assertThat(result)
+        .bodyJson()
+        .extractingPath("$.detail")
+        .asString()
+        .doesNotContain("Invalid character");
   }
 
   @Test
@@ -59,7 +66,8 @@ class ProblemDetailErrorControllerTest {
             .requestAttr(RequestDispatcher.ERROR_STATUS_CODE, 500)
             .requestAttr(RequestDispatcher.ERROR_REQUEST_URI, "/api/v1/broken")
             .requestAttr(
-                RequestDispatcher.ERROR_EXCEPTION, new IllegalStateException("secret-filter-detail"))
+                RequestDispatcher.ERROR_EXCEPTION,
+                new IllegalStateException("secret-filter-detail"))
             .exchange();
 
     // Then
@@ -82,7 +90,9 @@ class ProblemDetailErrorControllerTest {
     MvcTestResult result = mvc.get().uri("/error").exchange();
 
     // Then
-    assertThat(result).hasStatus(HttpStatus.NOT_FOUND).hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
+    assertThat(result)
+        .hasStatus(HttpStatus.NOT_FOUND)
+        .hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
     assertThat(result).bodyJson().extractingPath("$.type").asString().endsWith("#not-found");
   }
 }

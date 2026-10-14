@@ -33,7 +33,10 @@ class GlobalExceptionHandlerTest {
   void should_returnProblemDetail404_when_routeIsUnknown() {
     // When
     MvcTestResult result =
-        mvc.get().uri("/api/v1/does-not-exist").header(CorrelationIdFilter.HEADER, "demo-404").exchange();
+        mvc.get()
+            .uri("/api/v1/does-not-exist")
+            .header(CorrelationIdFilter.HEADER, "demo-404")
+            .exchange();
 
     // Then
     assertThat(result)
@@ -47,7 +50,11 @@ class GlobalExceptionHandlerTest {
         .containsOnlyKeys("type", "title", "status", "detail", "instance", "timestamp", "errors");
     assertThat(result).bodyJson().extractingPath("$.status").asNumber().isEqualTo(404);
     assertThat(result).bodyJson().extractingPath("$.instance").isEqualTo("/api/v1/does-not-exist");
-    assertThat(result).bodyJson().extractingPath("$.type").asString().endsWith("problems.md#not-found");
+    assertThat(result)
+        .bodyJson()
+        .extractingPath("$.type")
+        .asString()
+        .endsWith("problems.md#not-found");
     assertThat(result).bodyJson().extractingPath("$.title").asString().isNotBlank();
     assertThat(result).bodyJson().extractingPath("$.detail").asString().isNotBlank();
     assertThat(result).bodyJson().extractingPath("$.errors").asArray().isEmpty();
@@ -64,7 +71,9 @@ class GlobalExceptionHandlerTest {
     MvcTestResult result = mvc.post().uri("/api/v1/does-not-exist").exchange();
 
     // Then
-    assertThat(result).hasStatus(HttpStatus.NOT_FOUND).hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
+    assertThat(result)
+        .hasStatus(HttpStatus.NOT_FOUND)
+        .hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
   }
 
   @Test
@@ -77,8 +86,13 @@ class GlobalExceptionHandlerTest {
         .hasStatus(HttpStatus.METHOD_NOT_ALLOWED)
         .hasContentType(MediaType.APPLICATION_PROBLEM_JSON)
         .headers()
-        .hasHeaderSatisfying(HttpHeaders.ALLOW, values -> assertThat(values.toString()).contains("GET"));
-    assertThat(result).bodyJson().extractingPath("$.type").asString().endsWith("#method-not-allowed");
+        .hasHeaderSatisfying(
+            HttpHeaders.ALLOW, values -> assertThat(values.toString()).contains("GET"));
+    assertThat(result)
+        .bodyJson()
+        .extractingPath("$.type")
+        .asString()
+        .endsWith("#method-not-allowed");
     assertThat(result).bodyJson().extractingPath("$.status").asNumber().isEqualTo(405);
   }
 
@@ -88,7 +102,9 @@ class GlobalExceptionHandlerTest {
     MvcTestResult result = mvc.get().uri("/test/typed?count=abc").exchange();
 
     // Then
-    assertThat(result).hasStatus(HttpStatus.BAD_REQUEST).hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
+    assertThat(result)
+        .hasStatus(HttpStatus.BAD_REQUEST)
+        .hasContentType(MediaType.APPLICATION_PROBLEM_JSON);
     assertThat(result).bodyJson().extractingPath("$.type").asString().endsWith("#bad-request");
   }
 
@@ -125,7 +141,8 @@ class GlobalExceptionHandlerTest {
         .anySatisfy(line -> assertThat(line).contains("demo-500-log"));
     assertThat(output.getAll())
         .contains("java.lang.IllegalStateException: " + SECRET)
-        .contains("at com.ballastlane.pokedex.adapter.in.web.error.GlobalExceptionHandlerTest$ProbeController.boom");
+        .contains(
+            "at com.ballastlane.pokedex.adapter.in.web.error.GlobalExceptionHandlerTest$ProbeController.boom");
   }
 
   @RestController

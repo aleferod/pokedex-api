@@ -37,7 +37,9 @@ public class ProblemDetailErrorController implements ErrorController {
       // Called directly by a client rather than forwarded by the container.
       return respond(
           problems.create(
-              ProblemType.NOT_FOUND, "No endpoint at " + request.getRequestURI() + ".", request.getRequestURI()));
+              ProblemType.NOT_FOUND,
+              "No endpoint at " + request.getRequestURI() + ".",
+              request.getRequestURI()));
     }
     String path =
         request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI) instanceof String uri
@@ -61,7 +63,8 @@ public class ProblemDetailErrorController implements ErrorController {
         status,
         request.getAttribute(RequestDispatcher.ERROR_MESSAGE));
     ProblemType type = ProblemType.forStatus(status);
-    return respond(problems.forStatus(status, "The request was rejected: " + type.title() + ".", path));
+    return respond(
+        problems.forStatus(status, "The request was rejected: " + type.title() + ".", path));
   }
 
   private static ResponseEntity<ProblemDetail> respond(ProblemDetail problem) {

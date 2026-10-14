@@ -57,7 +57,8 @@ class CorrelationIdFilterTest {
     filter.doFilter(request, response, (req, res) -> {});
 
     // Then
-    assertThat(response.getHeader(CorrelationIdFilter.HEADER)).satisfies(CorrelationIdFilterTest::isUuid);
+    assertThat(response.getHeader(CorrelationIdFilter.HEADER))
+        .satisfies(CorrelationIdFilterTest::isUuid);
   }
 
   @ParameterizedTest
@@ -84,7 +85,8 @@ class CorrelationIdFilterTest {
     filter.doFilter(request, response, (req, res) -> {});
 
     // Then
-    assertThat(response.getHeader(CorrelationIdFilter.HEADER)).satisfies(CorrelationIdFilterTest::isUuid);
+    assertThat(response.getHeader(CorrelationIdFilter.HEADER))
+        .satisfies(CorrelationIdFilterTest::isUuid);
   }
 
   @Test
