@@ -61,16 +61,16 @@ public class LocalPokemonPersistenceAdapter implements LocalPokemonRepositoryPor
 
   @Override
   public boolean existsByPokeapiId(PokemonId pokeapiId) {
-    throw new UnsupportedOperationException("not implemented yet");
+    return false; // stub
   }
 
   @Override
   public Page<LocalPokemon> findAll(LocalPokemonFilter filter, PageRequest page) {
-    throw new UnsupportedOperationException("not implemented yet");
+    return Page.of(java.util.List.of(), page, 0); // stub
   }
 
   @Override
   public void delete(LocalPokemon pokemon) {
-    throw new UnsupportedOperationException("not implemented yet");
+    // stub
   }
 }
