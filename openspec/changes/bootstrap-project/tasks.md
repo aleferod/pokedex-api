@@ -80,7 +80,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 6. Configuration, schema and operational endpoints (service-configuration, operational-endpoints)
 
-- [ ] 6.1 Write `PostgresTestcontainersConfiguration` (`@ServiceConnection`, `postgres:16-alpine`) and `OperationalEndpointsIT` (`@SpringBootTest(webEnvironment = RANDOM_PORT)`):
+- [x] 6.1 Write `PostgresTestcontainersConfiguration` (`@ServiceConnection`, `postgres:16-alpine`) and `OperationalEndpointsIT` (`@SpringBootTest(webEnvironment = RANDOM_PORT)`):
   - health 200 `{"status":"UP"}` with no details
   - liveness and readiness 200
   - info contains `pokedex-api` and its version
@@ -89,13 +89,13 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - `/v3/api-docs` has `openapi` 3.x, title `Pokédex API` and the version
   - `/swagger-ui.html` reaches 200
   - Verify: red.
-- [ ] 6.2 Write `SchemaMigrationIT`:
+- [x] 6.2 Write `SchemaMigrationIT`:
   - `flyway_schema_history` contains V1, successful
   - a second context start against the same database runs no migration
   - the effective `spring.jpa.hibernate.ddl-auto` is `validate`
   - Verify: red.
-- [ ] 6.3 Write `HealthDatabaseDownIT`: with a dedicated container, stopping the container makes health return 503 `DOWN`. Verify: red.
-- [ ] 6.4 Write `ProfileConfigurationTest`:
+- [x] 6.3 Write `HealthDatabaseDownIT`: with a dedicated container, stopping the container makes health return 503 `DOWN`. Verify: red.
+- [x] 6.4 Write `ProfileConfigurationTest`:
   - default profile is `local`
   - `docker` profile without `DB_PASSWORD` fails, naming `DB_PASSWORD`
   - `ddl-auto=validate` resolved for `local`, `docker` and `test`

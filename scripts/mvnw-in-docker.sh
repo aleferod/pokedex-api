@@ -37,5 +37,6 @@ exec docker run --rm $TTY_FLAG \
   -e HOME=/var/maven \
   -e MAVEN_CONFIG=/var/maven/.m2 \
   -e MAVEN_OPTS="-Duser.home=/var/maven" \
+  -e TESTCONTAINERS_HOST_OVERRIDE=localhost \
   -v "$PROJECT_DIR":/app -w /app \
   "$IMAGE" ./mvnw "$@"
