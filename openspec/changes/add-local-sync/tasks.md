@@ -43,7 +43,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 5. End-to-end and docs
 
-- [ ] 5.1 Write `LocalPokemonSyncIT` (Testcontainers + WireMock):
+- [x] 5.1 Write `LocalPokemonSyncIT` (Testcontainers + WireMock):
   - import → GET via `Location` equals the import body
   - proprietary fields set through the repository, upstream weight changed in WireMock → re-sync keeps proprietary and refreshes upstream, with a higher version
   - concurrent first imports → one record (one 201, one 200)
