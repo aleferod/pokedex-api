@@ -8,7 +8,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 
 ## 2. Domain: catalog values and paging
 
-- [ ] 2.1 Write `PokemonIdTest`, `WeightTest`, `PageRequestTest` and `PageTest`:
+- [x] 2.1 Write `PokemonIdTest`, `WeightTest`, `PageRequestTest` and `PageTest`:
   - positive id
   - 69 hg → 6.9 kg, 0 hg → 0.0 kg; negative weight rejected
   - `page`/`size` bounds give `InvalidFieldException` naming the field; `offset`
