@@ -4,6 +4,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.matching;
+import static com.github.tomakehurst.wiremock.client.WireMock.moreThanOrExactly;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
@@ -254,14 +255,26 @@ class PokeApiCatalogAdapterTest {
   }
 
   @Test
-  void should_giveUpAfterThreeAttempts_when_connectionsKeepFailing() {
+  void should_giveUpAfterThreeAttempts_when_pokeApiKeepsFailing() {
+    POKEAPI.stubFor(
+        get(urlPathEqualTo("/api/v2/pokemon/1")).willReturn(aResponse().withStatus(503)));
+
+    assertThatThrownBy(() -> adapter(8).findDetail(PokemonIdentifier.parse("1")))
+        .isInstanceOf(CatalogUnavailableException.class);
+    POKEAPI.verify(3, getRequestedFor(urlPathEqualTo("/api/v2/pokemon/1")));
+  }
+
+  @Test
+  void should_retryThenGiveUp_when_connectionsKeepBeingReset() {
     POKEAPI.stubFor(
         get(urlPathEqualTo("/api/v2/pokemon/1"))
             .willReturn(aResponse().withFault(Fault.CONNECTION_RESET_BY_PEER)));
 
     assertThatThrownBy(() -> adapter(8).findDetail(PokemonIdentifier.parse("1")))
         .isInstanceOf(CatalogUnavailableException.class);
-    POKEAPI.verify(3, getRequestedFor(urlPathEqualTo("/api/v2/pokemon/1")));
+    // Three attempts of ours; the JDK client may also replay an idempotent GET on a dropped
+    // connection, so PokeAPI can see more.
+    POKEAPI.verify(moreThanOrExactly(3), getRequestedFor(urlPathEqualTo("/api/v2/pokemon/1")));
   }
 
   @Test

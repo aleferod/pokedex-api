@@ -50,6 +50,7 @@
 | 404 | no | no (a success) |
 | Other 4xx, unreadable or empty body | no | yes |
 
+- **The JDK client replays too:** the JDK `HttpClient` itself replays an idempotent GET once when the server drops the connection before answering. A reset can therefore reach PokeAPI up to twice per attempt. Tests count our attempts with a status-based failure, which the JDK never replays.
 - **Retry:** at most 3 attempts. The wait grows exponentially from 200 ms with ±50 % jitter, so concurrent callers don't retry in lockstep.
 - **Circuit breaker:** count-based window of 20 calls, at least 10 calls before it can trip, 50 % failure threshold, 30 s open, then 3 half-open trial calls.
   - The 30 s open period matches the existing `Retry-After: 30`.

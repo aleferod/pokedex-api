@@ -16,7 +16,7 @@ class PokeApiUnavailableException extends RuntimeException {
     this.retryable = retryable;
   }
 
-  /** Whether another attempt may succeed (stub). */
+  /** Whether another attempt may succeed: set by {@link PokeApiClient} for transient failures. */
   boolean retryable() {
     return retryable;
   }

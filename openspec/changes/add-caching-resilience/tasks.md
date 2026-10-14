@@ -21,8 +21,8 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 3. Resilience
 
-- [ ] 3.1 Add the Resilience4j core modules. Write `PokeApiResilienceTest` (D3: retryable only, max attempts, breaker opens, fails fast, 404 ignored, half-open recovery), plus `PokeApiCatalogAdapterTest` additions for classification (503 then 200, 429, reset retried; timeout and 404 once). Verify: red.
-- [ ] 3.2 Implement `PokeApiResilience`, the `retryable` classification in `PokeApiClient`, and event logging. Verify: 3.1 green; existing adapter tests green.
+- [x] 3.1 Add the Resilience4j core modules. Write `PokeApiResilienceTest` (D3: retryable only, max attempts, breaker opens, fails fast, 404 ignored, half-open recovery), plus `PokeApiCatalogAdapterTest` additions for classification (503 then 200, 429, reset retried; timeout and 404 once). Verify: red.
+- [x] 3.2 Implement `PokeApiResilience`, the `retryable` classification in `PokeApiClient`, and event logging. Verify: 3.1 green; existing adapter tests green.
 
 ## 4. Wiring and configuration
 
