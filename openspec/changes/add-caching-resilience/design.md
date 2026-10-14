@@ -23,7 +23,9 @@
   - a `CaffeineCacheManager` with two caches, `pokemon-pages` (key: `PageRequest`) and `pokemon-details` (key: the identifier's value, `"25"` or `"pikachu"`)
   - each with `expireAfterWrite` = TTL, `maximumSize` = max entries, and `recordStats`
   - the decorator calls `Cache.get(key, loader)` itself. There's no `@Cacheable`, so nothing depends on proxies or self-invocation rules.
-- **Async cache mode.** The manager uses Caffeine's `AsyncCache`, so a slow load holds a future, not a lock on the map. Concurrent callers for the same key wait on that future, which gives one load per key. Callers for other keys are never blocked.
+- **The load runs on the calling thread,** inside Caffeine's per-key compute. Concurrent callers for the same key wait for it, which gives one load per key, and the request's correlation id stays in the MDC for the PokeAPI calls and their logs.
+  - Caffeine's async mode wouldn't hold the map's bin lock during a load, but it runs the loader on the cache's executor, which loses the MDC.
+  - The lock is acceptable: a load is bounded by the HTTP timeouts and the circuit breaker. Another key only waits if it hashes to the same bin of a 2000-entry table, and a loader never touches its own cache, so there's no recursive update.
 - **What's stored:**
   - Details are stored as `Optional<PokemonDetail>`, so an unknown Pokémon is cached too. Caffeine's TinyLFU admission keeps a flood of junk names from evicting popular entries.
   - A failed load throws, so nothing is stored. The decorator unwraps Spring's `ValueRetrievalException`, so callers still see `CatalogUnavailableException`.
