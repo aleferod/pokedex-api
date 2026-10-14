@@ -118,7 +118,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 8. Container delivery (container-delivery)
 
-- [ ] 8.1 Write the multi-stage `Dockerfile` (design D12) and `.dockerignore` (excludes `target/`, `.git/`, `.env`, IDE files). Verify:
+- [x] 8.1 Write the multi-stage `Dockerfile` (design D12) and `.dockerignore` (excludes `target/`, `.git/`, `.env`, IDE files). Verify:
   - `docker build -t pokedex-api:dev .` succeeds
   - `docker image inspect --format '{{.Config.User}}' pokedex-api:dev` prints `app`
   - the image has no `javac`
