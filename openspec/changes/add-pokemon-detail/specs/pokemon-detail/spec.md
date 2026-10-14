@@ -54,7 +54,7 @@ Branching evolutions SHALL appear as several entries in one `evolvesTo`.
 #### Scenario: Branching evolution (Eevee)
 - **WHEN** a client calls `GET /api/v1/pokemon/eevee`
 - **THEN** `evolutionChain.name` is `eevee` and `evolutionChain.evolvesTo` lists 8 stages: `vaporeon`, `jolteon`, `flareon`, `espeon`, `umbreon`, `leafeon`, `glaceon`, `sylveon`
-- **AND** `vaporeon` has condition `Use Water Stone`, `espeon` `Level up with high friendship during the day`, `umbreon` `Level up with high friendship at night`, `sylveon` `Level up knowing a Fairy move`
+- **AND** `vaporeon` has condition `Use Water Stone`, `espeon` `Level up with high friendship during the day`, `umbreon` `Level up with high friendship at night`, `sylveon` `Level up with high affection knowing a Fairy move`
 
 #### Scenario: Requesting a middle stage
 - **WHEN** a client calls `GET /api/v1/pokemon/pikachu`
