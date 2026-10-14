@@ -101,9 +101,9 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 9. Integration verification
 
-- [ ] 9.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record test counts, coverage of domain + application (≥ 85 %), ArchUnit green, 0 warnings, Spotless clean.
-- [ ] 9.2 From a fresh clone: `cp .env.example .env && docker compose up --build -d`, then curl register → login → `/me` → anonymous `/api/v1/local-pokemon` (401) → USER `DELETE` (403). Verify: the expected status codes and problem bodies; `docker compose down -v`.
-- [ ] 9.3 Run `openspec validate add-user-auth --strict` and gitleaks over the full history. Verify: valid, no leaks (only the `.env.example` placeholder secret, which is allow-listed if flagged).
+- [x] 9.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record test counts, coverage of domain + application (≥ 85 %), ArchUnit green, 0 warnings, Spotless clean.
+- [x] 9.2 From a fresh clone: `cp .env.example .env && docker compose up --build -d`, then curl register → login → `/me` → anonymous `/api/v1/local-pokemon` (401) → USER `DELETE` (403). Verify: the expected status codes and problem bodies; `docker compose down -v`.
+- [x] 9.3 Run `openspec validate add-user-auth --strict` and gitleaks over the full history. Verify: valid, no leaks (only the `.env.example` placeholder secret, which is allow-listed if flagged).
 
 ## Workflow follow-up
 
