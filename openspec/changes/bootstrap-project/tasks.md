@@ -107,8 +107,8 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - `build-info` goal
   - the springdoc `OpenAPI` bean in `infrastructure` (title, description, version, MIT license)
   - Verify: 6.1–6.4 are green.
-- [ ] 6.6 Write `.env.example` listing every variable with a placeholder: `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`, `DB_URL`, `DB_PORT`, `APP_CORS_ALLOWED_ORIGINS`, `SERVER_PORT`. Verify: `git check-ignore .env` is true and `git check-ignore .env.example` is false.
-- [ ] 6.7 Write ADR-0004 (Testcontainers over H2). Verify: linked from the ADR index.
+- [x] 6.6 Write `.env.example` listing every variable with a placeholder: `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT`, `APP_CORS_ALLOWED_ORIGINS` and `SERVER_PORT`, plus `DB_URL` as a documented, commented-out optional override. Verify: `git check-ignore .env` is true and `git check-ignore .env.example` is false.
+- [x] 6.7 Write ADR-0004 (Testcontainers over H2). Verify: linked from the ADR index.
 
 ## 7. Quality gates (build-governance: coverage, warnings, formatting)
 
