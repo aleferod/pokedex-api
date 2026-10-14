@@ -43,7 +43,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 4. Persistence
 
-- [ ] 4.1 Write `UserPersistenceAdapterIT` (`@DataJpaTest` + Testcontainers):
+- [x] 4.1 Write `UserPersistenceAdapterIT` (`@DataJpaTest` + Testcontainers):
   - save/find round trip by id and username
   - `existsByUsername` / `existsByEmail`
   - a direct duplicate insert (bypassing the existence checks) → `DuplicateUserException` with the right field
