@@ -25,7 +25,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 ## 3. Application
 
 - [x] 3.1 Write `GetPokemonDetailUseCaseTest`: found → detail; empty → `PokemonNotFoundException`; unavailable propagates. Verify: red.
-- [ ] 3.2 Add `PokemonCatalogPort.findDetail`, the `GetPokemonDetail` port and `GetPokemonDetailUseCase`, plus a temporary `findDetail` in the PokeAPI adapter that returns empty until group 4. Verify: 3.1 green; coverage gate holds.
+- [x] 3.2 Add `PokemonCatalogPort.findDetail`, the `GetPokemonDetail` port and `GetPokemonDetailUseCase`, plus a temporary `findDetail` in the PokeAPI adapter that returns empty until group 4. Verify: 3.1 green; coverage gate holds.
 
 ## 4. Adapter
 
