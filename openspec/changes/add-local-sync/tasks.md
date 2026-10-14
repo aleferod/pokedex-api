@@ -16,7 +16,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 2. Application
 
-- [ ] 2.1 Write `SyncPokemonUseCaseTest`, `SyncCatalogPageUseCaseTest` and `GetLocalPokemonUseCaseTest` (D2). Verify: red.
+- [x] 2.1 Write `SyncPokemonUseCaseTest`, `SyncCatalogPageUseCaseTest` and `GetLocalPokemonUseCaseTest` (D2). Verify: red.
 - [ ] 2.2 Implement the ports (`SyncPokemon`, `SyncCatalogPage`, `GetLocalPokemon`, `LocalPokemonRepositoryPort`, result records) and the three use cases. Verify: 2.1 green; domain + application coverage ≥ 85 %.
 
 ## 3. Persistence
