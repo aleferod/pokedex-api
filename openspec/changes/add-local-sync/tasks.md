@@ -4,7 +4,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 1. Domain
 
-- [ ] 1.1 Write `LocalPokemonIdTest`, `LocalizedNamesTest`, `InternalTagsTest`, `ProprietaryDataTest` and `LocalPokemonTest` (D1):
+- [x] 1.1 Write `LocalPokemonIdTest`, `LocalizedNamesTest`, `InternalTagsTest`, `ProprietaryDataTest` and `LocalPokemonTest` (D1):
   - UUID parsing, with `id` named on error
   - locale pattern; name trim and 1–50; at most 10 entries
   - tag lower-casing, trim, dedupe, pattern, at most 20
