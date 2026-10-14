@@ -4,14 +4,19 @@ import com.ballastlane.pokedex.application.port.in.localpokemon.GetLocalPokemon;
 import com.ballastlane.pokedex.application.port.out.localpokemon.LocalPokemonRepositoryPort;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemon;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonId;
+import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonNotFoundException;
 
-/** Read one (stub). */
+/** Reads one local record. */
 public class GetLocalPokemonUseCase implements GetLocalPokemon {
 
-  public GetLocalPokemonUseCase(LocalPokemonRepositoryPort repository) {}
+  private final LocalPokemonRepositoryPort repository;
+
+  public GetLocalPokemonUseCase(LocalPokemonRepositoryPort repository) {
+    this.repository = repository;
+  }
 
   @Override
   public LocalPokemon get(LocalPokemonId id) {
-    return null;
+    return repository.findById(id).orElseThrow(() -> new LocalPokemonNotFoundException(id));
   }
 }
