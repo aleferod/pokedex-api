@@ -65,12 +65,12 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 5. Cross-origin access (cross-origin-access)
 
-- [ ] 5.1 Write `CorsPropertiesTest`:
+- [x] 5.1 Write `CorsPropertiesTest`:
   - comma-separated origins bind into a list
   - `*` → binding failure with a message requiring explicit origins
   - blank entry → failure
   - Verify: red.
-- [ ] 5.2 Write `CorsIntegrationTest` (`@WebMvcTest` + the CORS configuration):
+- [x] 5.2 Write `CorsIntegrationTest` (`@WebMvcTest` + the CORS configuration):
   - allowed-origin preflight → 200 with `Access-Control-Allow-Origin`
   - disallowed origin → 403 without the header
   - PATCH preflight with `Authorization`, `If-Match` → advertised
