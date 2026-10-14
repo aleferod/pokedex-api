@@ -12,4 +12,7 @@ public interface GetPokemonDetail {
    *     catalog source cannot answer right now
    */
   PokemonDetail get(PokemonIdentifier identifier);
+
+  /** Like {@link #get}, but straight from the source (stub). */
+  PokemonDetail getFresh(PokemonIdentifier identifier);
 }

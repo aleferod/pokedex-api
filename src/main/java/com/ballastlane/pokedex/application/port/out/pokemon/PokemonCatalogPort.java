@@ -24,4 +24,13 @@ public interface PokemonCatalogPort {
    * @throws CatalogUnavailableException the source cannot answer right now
    */
   Optional<PokemonDetail> findDetail(PokemonIdentifier identifier);
+
+  /**
+   * Like {@link #findDetail}, but straight from the source (stub).
+   *
+   * @throws CatalogUnavailableException the source cannot answer right now
+   */
+  default Optional<PokemonDetail> findFreshDetail(PokemonIdentifier identifier) {
+    return Optional.empty();
+  }
 }

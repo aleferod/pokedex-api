@@ -24,4 +24,9 @@ public class GetPokemonDetailUseCase implements GetPokemonDetail {
         .findDetail(identifier)
         .orElseThrow(() -> new PokemonNotFoundException(identifier));
   }
+
+  @Override
+  public PokemonDetail getFresh(PokemonIdentifier identifier) {
+    return null; // stub
+  }
 }
