@@ -1,13 +1,26 @@
 package com.ballastlane.pokedex.domain.user;
 
-/** UserId (stub). */
-public record UserId(java.util.UUID value) {
+import com.ballastlane.pokedex.domain.shared.InvalidFieldException;
+import java.util.UUID;
+
+/** Value object: the identity of an account. */
+public record UserId(UUID value) {
+
+  public UserId {
+    if (value == null) {
+      throw new InvalidFieldException("id", "is required");
+    }
+  }
 
   public static UserId random() {
-    return new UserId(null);
+    return new UserId(UUID.randomUUID());
   }
 
   public static UserId of(String value) {
-    return new UserId(null);
+    try {
+      return new UserId(UUID.fromString(value));
+    } catch (IllegalArgumentException | NullPointerException notAUuid) {
+      throw new InvalidFieldException("id", "must be a UUID");
+    }
   }
 }

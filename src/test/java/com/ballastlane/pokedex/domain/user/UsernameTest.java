@@ -23,7 +23,8 @@ class UsernameTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"ab", "abcdefghijklmnopqrstuvwxyz01234", "a!", "ash ketchum", "ação", "<b>x</b>"})
+  @ValueSource(
+      strings = {"ab", "abcdefghijklmnopqrstuvwxyz01234", "a!", "ash ketchum", "ação", "<b>x</b>"})
   void should_rejectNamingTheField_when_usernameBreaksTheRules(String candidate) {
     assertThatThrownBy(() -> new Username(candidate))
         .isInstanceOfSatisfying(

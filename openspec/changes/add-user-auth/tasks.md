@@ -16,7 +16,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - redacted `toString`
   - `User.register` assigns `USER` and equal timestamps
   - Verify: red against stubs.
-- [ ] 2.2 Implement the value objects, `Role`, `User` (with `register`/`restore`) and the `DomainException` hierarchy. Verify: 2.1 green; ArchUnit green (`domain` is JDK-only).
+- [x] 2.2 Implement the value objects, `Role`, `User` (with `register`/`restore`) and the `DomainException` hierarchy. Verify: 2.1 green; ArchUnit green (`domain` is JDK-only).
 - [ ] 2.3 Write `PasswordPolicyTest`:
   - each rule's violation
   - all violations collected at once
