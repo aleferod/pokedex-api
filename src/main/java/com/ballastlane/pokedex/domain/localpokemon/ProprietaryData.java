@@ -25,6 +25,16 @@ public record ProprietaryData(
     notes = text("notes", notes, MAX_NOTES);
   }
 
+  /** Builds from raw input reporting every violation at once (stub). */
+  public static ProprietaryData of(
+      java.util.Map<String, String> localizedNames,
+      String region,
+      String habitatNotes,
+      java.util.Collection<String> internalTags,
+      String notes) {
+    return empty();
+  }
+
   public static ProprietaryData empty() {
     return new ProprietaryData(null, null, null, null, null);
   }

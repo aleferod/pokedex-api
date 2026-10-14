@@ -37,6 +37,14 @@ public record LocalPokemon(
         null);
   }
 
+  /** Business edit of the proprietary data (stub). */
+  public LocalPokemon withProprietary(ProprietaryData newProprietary, Instant now) {
+    return this;
+  }
+
+  /** Optimistic-locking check (stub). */
+  public void requireVersion(long expected) {}
+
   /** Re-sync: new upstream data; proprietary data and creation audit are kept as they are. */
   public LocalPokemon resyncWith(UpstreamData newUpstream, Instant now) {
     return new LocalPokemon(
