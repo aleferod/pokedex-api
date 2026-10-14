@@ -60,7 +60,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 ## 6. Wiring, configuration and end-to-end
 
 - [x] 6.1 Write `PokeApiPropertiesTest` (defaults; `max-concurrency` 0 or 65 rejected; non-positive timeouts rejected) and `PokemonCatalogIT` (`@IntegrationTest` + WireMock as PokeAPI via `@DynamicPropertySource`: first page mapped end to end; PokeAPI stopped → 503). Verify: red.
-- [ ] 6.2 Implement `PokeApiProperties`, `PokeApiConfiguration` (RestClient with timeouts and User-Agent, adapter, fan-out, use-case beans) and the `app.pokeapi.*` defaults in `application.yml`. Add `POKEAPI_BASE_URL` to `.env.example` and compose. Verify: 6.1 green; full `verify` green.
+- [x] 6.2 Implement `PokeApiProperties`, `PokeApiConfiguration` (RestClient with timeouts and User-Agent, adapter, fan-out, use-case beans) and the `app.pokeapi.*` defaults in `application.yml`. Add `POKEAPI_BASE_URL` to `.env.example` and compose. Verify: 6.1 green; full `verify` green.
 - [ ] 6.3 Update the README (US01 row ✅, curl example, catalog section: paging, item fields, 503 behaviour, parallel fetching; configuration table; patterns: Anti-Corruption Layer and Bulkhead) and `docs/problems.md` (`service-unavailable` mentions PokeAPI and `Retry-After`). Verify: lychee offline shows no broken links.
 
 ## 7. Integration verification
