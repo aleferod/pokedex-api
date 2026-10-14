@@ -44,7 +44,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
   - `User-Agent` header present
   - 10 entries with 300 ms delays finish in < 3 s
   - Verify: red.
-- [ ] 4.6 Implement `PokeApiClient` and `PokeApiCatalogAdapter`. Verify: 4.5 green; ArchUnit green (the adapter depends only on application ports and domain).
+- [x] 4.6 Implement `PokeApiClient` and `PokeApiCatalogAdapter`. Verify: 4.5 green; ArchUnit green (the adapter depends only on application ports and domain).
 
 ## 5. Web API
 

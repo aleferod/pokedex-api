@@ -92,6 +92,7 @@ PokeAPI v2 (checked against the live API on 2026-10-14):
 
 - **`PokeApiConfiguration`** builds a `RestClient` on `JdkClientHttpRequestFactory` (JDK `HttpClient` with connect timeout, HTTP/1.1, plus a read timeout). It sets a default `User-Agent` and `Accept: application/json`, and wires the client, adapter and use case.
 - **No Boot `RestClient.Builder` dependency:** PokeAPI is the only outbound HTTP client, and building it explicitly keeps the timeouts visible in one place.
+- *Found during implementation:* with `JdkClientHttpRequestFactory`, Spring applies the read timeout to reading the **whole response body**, not just to inactivity. Detail responses are about 300 KB, so the 5 s default leaves headroom. The adapter test uses 2 s, because 800 ms was too tight for the first request in a cold JVM.
 
 ### D7. Testing
 | Test | What it covers |

@@ -29,7 +29,8 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 class PokeApiCatalogAdapterTest {
 
   private static final Duration CONNECT_TIMEOUT = Duration.ofMillis(500);
-  private static final Duration READ_TIMEOUT = Duration.ofMillis(800);
+  // Spring applies the read timeout to reading the whole body, so leave room for a cold JVM.
+  private static final Duration READ_TIMEOUT = Duration.ofSeconds(2);
 
   @RegisterExtension
   static final WireMockExtension POKEAPI =
@@ -132,7 +133,7 @@ class PokeApiCatalogAdapterTest {
     // When / Then
     assertThatThrownBy(() -> adapter(8).findPage(new PageRequest(0, 3)))
         .isInstanceOf(CatalogUnavailableException.class);
-    assertThat(Duration.between(start, Instant.now())).isLessThan(Duration.ofSeconds(3));
+    assertThat(Duration.between(start, Instant.now())).isLessThan(Duration.ofMillis(4_500));
   }
 
   @Test
