@@ -45,7 +45,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 - [x] 5.1 Write `LocalPokemonCrudIT` (Testcontainers + WireMock):
   - create Bulbasaur → list `?tag=starter` → patch notes → stale patch with the old `ETag` (409) → replace → USER delete (403) → ADMIN delete (204) → GET (404)
   - Verify: green with full `verify`.
-- [ ] 5.2 Update the README:
+- [x] 5.2 Update the README:
   - US04 rows ✅, the CRUD section (verbs, `If-Match`/`ETag` flow, 409/428, merge patch, read-only fields, rules) and the 409-vs-412 note
   - patterns: Notification, Merge Patch, Optimistic Offline Lock
   - update `docs/problems.md` for 409, 428 and 412
