@@ -65,14 +65,14 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 
 ## 7. Integration verification
 
-- [ ] 7.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record test counts, coverage, ArchUnit, 0 warnings, Spotless clean.
-- [ ] 7.2 From a fresh clone with `docker compose up --build`, against the **real PokeAPI**:
+- [x] 7.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record test counts, coverage, ArchUnit, 0 warnings, Spotless clean.
+- [x] 7.2 From a fresh clone with `docker compose up --build`, against the **real PokeAPI**:
   - `GET /api/v1/pokemon?page=0&size=5` → 5 entries starting with bulbasaur (category `Seed Pokémon`, weight 6.9)
   - `size=101` → 400
   - `page=100` → empty content
   - record the response time
   - Verify: as described; `docker compose down -v`.
-- [ ] 7.3 Run `openspec validate add-pokemon-catalog --strict` and gitleaks. Verify: valid, no leaks.
+- [x] 7.3 Run `openspec validate add-pokemon-catalog --strict` and gitleaks. Verify: valid, no leaks.
 
 ## Workflow follow-up
 
