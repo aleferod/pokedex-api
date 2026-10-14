@@ -37,7 +37,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - `LocalPokemonSyncIT`: fresh re-sync
   - new `PokeApiResilienceIT`
   - Verify: green with full `verify`.
-- [ ] 5.2 Docs:
+- [x] 5.2 Docs:
   - ADR-0003 and the ADR index
   - README: a caching and resilience section, the configuration table, patterns (Decorator ✅, Retry, Circuit Breaker) and trade-offs
   - `docs/problems.md`: 503 from an open circuit
