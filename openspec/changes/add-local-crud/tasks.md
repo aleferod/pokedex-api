@@ -42,7 +42,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 5. End-to-end and docs
 
-- [ ] 5.1 Write `LocalPokemonCrudIT` (Testcontainers + WireMock):
+- [x] 5.1 Write `LocalPokemonCrudIT` (Testcontainers + WireMock):
   - create Bulbasaur → list `?tag=starter` → patch notes → stale patch with the old `ETag` (409) → replace → USER delete (403) → ADMIN delete (204) → GET (404)
   - Verify: green with full `verify`.
 - [ ] 5.2 Update the README:
