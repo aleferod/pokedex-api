@@ -149,9 +149,9 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 11. Integration verification
 
-- [ ] 11.1 Run `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0, and the summary records test counts per suite, ArchUnit green, coverage check passed, zero compiler warnings and Spotless clean.
-- [ ] 11.2 Run `openspec validate bootstrap-project --strict`. Verify: no errors or warnings.
-- [ ] 11.3 Run the gitleaks container over the full history plus the `ghp_|github_pat_|gho_` grep. Verify: no findings.
+- [x] 11.1 Run `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0, and the summary records test counts per suite, ArchUnit green, coverage check passed, zero compiler warnings and Spotless clean.
+- [x] 11.2 Run `openspec validate bootstrap-project --strict`. Verify: no errors or warnings.
+- [x] 11.3 Run the gitleaks container over the full history plus the `ghp_|github_pat_|gho_` grep. Verify: no findings.
 
 ## Workflow follow-up
 
