@@ -14,7 +14,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
   - `page`/`size` bounds give `InvalidFieldException` naming the field; `offset`
   - `totalPages` uses ceiling division; empty page
   - Verify: red against stubs.
-- [ ] 2.2 Implement `PokemonId`, `Weight`, `PokemonSummary`, `PageRequest` and `Page` (D1). Verify: 2.1 green; ArchUnit green.
+- [x] 2.2 Implement `PokemonId`, `Weight`, `PokemonSummary`, `PageRequest` and `Page` (D1). Verify: 2.1 green; ArchUnit green.
 
 ## 3. Application: port and use case
 
