@@ -53,7 +53,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 6. Integration verification
 
-- [ ] 6.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
+- [x] 6.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
 - [ ] 6.2 From a fresh clone with `docker compose up --build` against the real PokeAPI, run the curl flow above with a registered USER. The ADMIN delete waits for the seeded admin in `add-seed-data`, so for now USER delete → 403. Verify: as in the spec; `docker compose down -v`.
 - [ ] 6.3 Run `openspec validate add-local-crud --strict` and gitleaks. Verify: valid, no leaks.
 
