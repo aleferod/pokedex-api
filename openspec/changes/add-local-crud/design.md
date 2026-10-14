@@ -72,11 +72,12 @@ US03 delivered the `LocalPokemon` aggregate, with proprietary-data value objects
   - any other member → "is not an accepted field"
   - a JSON type mismatch → "has the wrong type"
   - every problem is reported together
-- **Read-only fields on `POST`/`PUT`:** the request records carry **`@ReadOnlyFields({...})`**, a small web-layer annotation. When Jackson reports an `UnrecognizedPropertyException`, `GlobalExceptionHandler` checks the referring class's annotation and answers `"is read-only: it comes from PokeAPI or is managed by the service"` instead of the generic message.
+- **Read-only fields on `POST`/`PUT`:** the request records carry **`@ReadOnlyFields(LocalPokemonResponse.class)`**, a small web-layer annotation: a member of the response representation that the request doesn't declare is read-only, so the list never has to be maintained by hand. When Jackson reports an `UnrecognizedPropertyException`, `GlobalExceptionHandler` checks the referring class and answers `"is read-only: it comes from PokeAPI or is managed by the service"` instead of the generic message. `MergePatchReader` applies the same rule to `PATCH`, using `ReplaceLocalPokemonRequest` as its shape.
   - **Caveat:** Jackson stops at the first unknown member, so a POST/PUT reports the first read-only field. PATCH, which reads the tree, reports all of them.
 - **`DELETE /{id}`:** 204 with an optional `If-Match`.
 - **`GET /`:** list with `page` (`@Min(0)`), `size` (`@Min(1) @Max(100)`), `tag` and `name` (each `@Size(max = 50)`).
-- **`IfMatch` helper:** parses the header; `PreconditionRequiredException` (web) → 428.
+- **`IfMatch` helper:** parses the header; `PreconditionRequiredException` (web) → 428. A malformed header, like a malformed merge-patch member, raises the web-layer `InvalidRequestException` (400 with every entry), so request-format problems never masquerade as domain rule violations.
+- **Two controllers:** `LocalPokemonSyncController` keeps the PokeAPI import endpoints from US03, and `LocalPokemonController` becomes the plain REST resource (list, read, create, replace, patch, delete). Same base path; each has one reason to change.
 - **`GlobalExceptionHandler` additions:**
   - `InvalidFieldsException` → 400 with all entries
   - `DuplicateLocalPokemonException` → 409 with `errors[pokeapiId]`

@@ -30,7 +30,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 4. Web
 
-- [ ] 4.1 Extend `LocalPokemonControllerTest`:
+- [x] 4.1 Extend `LocalPokemonControllerTest`:
   - list (filters, envelope, 400 paging)
   - create (201, `Location`, `ETag`; 409 `errors[pokeapiId]`; 400 unknown number; 400 missing `pokeapiId`; 400 read-only `weight`)
   - replace (200 new `ETag`; 428 without `If-Match`; 409 stale; read-only)
@@ -38,7 +38,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - delete (204; 404; stale 409 with `If-Match`)
   - `If-Match` parsing (`"3"`, `W/"3"`, `*`, garbage → 400)
   - Verify: red.
-- [ ] 4.2 Implement the endpoints, request DTOs with `@ReadOnlyFields`, `MergePatchReader`, the `IfMatch` helper and `PreconditionRequiredException`, the `GlobalExceptionHandler` additions, and the wiring (D5). Verify: 4.1 green; earlier tests green.
+- [x] 4.2 Implement the endpoints, request DTOs with `@ReadOnlyFields`, `MergePatchReader`, the `IfMatch` helper and `PreconditionRequiredException`, the `GlobalExceptionHandler` additions, and the wiring (D5). Verify: 4.1 green; earlier tests green.
 
 ## 5. End-to-end and docs
 
