@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1
 
 # ---- 1. build: compile and package --------------------------------------------------------
-# Tests do not run here (Testcontainers needs a Docker daemon); CI and
+# Tests are neither compiled nor run here (Testcontainers needs a Docker daemon); CI and
 # scripts/verify-in-docker.sh run the full suite.
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /workspace
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
 COPY src/ src/
-RUN --mount=type=cache,target=/root/.m2 ./mvnw -B -ntp -DskipTests package
+RUN --mount=type=cache,target=/root/.m2 ./mvnw -B -ntp -Dmaven.test.skip=true package
 
 # ---- 2. extract: split the executable jar into layers (least to most frequently changing) ----
 FROM eclipse-temurin:21-jre-alpine AS extract
