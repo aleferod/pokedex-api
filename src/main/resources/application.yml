@@ -1,8 +1,27 @@
 spring:
   application:
     name: pokedex-api
+  web:
+    resources:
+      # The API serves no static files: unmatched paths become 404 for every HTTP method.
+      add-mappings: false
 
 logging:
   pattern:
     # Every log line carries the request's correlation id (set by CorrelationIdFilter in the MDC).
     correlation: "[%X{correlationId:-}] "
+
+server:
+  error:
+    # Defence in depth: never echo internals, even if an error bypasses our handlers.
+    include-stacktrace: never
+    include-message: never
+    include-binding-errors: never
+    include-exception: false
+    whitelabel:
+      enabled: false
+
+app:
+  problems:
+    # Problem "type" URIs resolve to the documentation of each problem type.
+    base-uri: https://github.com/aleferod/pokedex-api/blob/main/docs/problems.md#
