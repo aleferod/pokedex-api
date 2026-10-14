@@ -4,7 +4,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 1. Fixtures
 
-- [ ] 1.1 Add trimmed, dated real PokeAPI captures:
+- [x] 1.1 Add trimmed, dated real PokeAPI captures:
   - Eevee: `pokemon-133`, `species-133`, `evolution-chain-67`
   - Ditto: `pokemon-132`, `species-132`, `evolution-chain-66`
   - `evolution-chain-1` and `evolution-chain-10`
