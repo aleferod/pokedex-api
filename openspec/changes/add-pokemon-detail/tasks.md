@@ -43,7 +43,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - unknown → empty
   - species 404 → unavailable; Pokémon 500 → unavailable
   - Verify: red.
-- [ ] 4.6 Implement `PokeApiNotFoundException`, the client methods (`pokemon(String)`, `evolutionChain(id)`) and `PokeApiCatalogAdapter.findDetail` (D3). Verify: 4.5 green; catalog tests still green.
+- [x] 4.6 Implement `PokeApiNotFoundException`, the client methods (`pokemon(String)`, `evolutionChain(id)`) and `PokeApiCatalogAdapter.findDetail` (D3). Verify: 4.5 green; catalog tests still green.
 
 ## 5. Web
 
