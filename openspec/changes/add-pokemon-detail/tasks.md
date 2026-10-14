@@ -37,7 +37,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - the Pikachu chain from Pichu
   - Ditto with no evolutions
   - Verify: red.
-- [ ] 4.4 Implement the detail DTOs (types, stats, artwork, flavor texts, chain) and `PokeApiDetailMapper`. Verify: 4.3 green.
+- [x] 4.4 Implement the detail DTOs (types, stats, artwork, flavor texts, chain) and `PokeApiDetailMapper`. Verify: 4.3 green.
 - [ ] 4.5 Extend `PokeApiCatalogAdapterTest` (WireMock):
   - detail by id and by name, with the name lower-cased in the upstream path
   - unknown → empty
