@@ -27,7 +27,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - duplicate PokeAPI id → `DuplicateLocalPokemonException`
   - stale version → `StaleLocalPokemonException`
   - Verify: red.
-- [ ] 3.2 Implement `V3__create_local_pokemon.sql`, `LocalPokemonJpaEntity`, `SpringDataLocalPokemonRepository`, `LocalPokemonPersistenceMapper` and `LocalPokemonPersistenceAdapter` (D3, D4). Verify: 3.1 green; `SchemaMigrationIT` green (V1–V3; Hibernate validate).
+- [x] 3.2 Implement `V3__create_local_pokemon.sql`, `LocalPokemonJpaEntity`, `SpringDataLocalPokemonRepository`, `LocalPokemonPersistenceMapper` and `LocalPokemonPersistenceAdapter` (D3, D4). Verify: 3.1 green; `SchemaMigrationIT` green (V1–V3; Hibernate validate).
 
 ## 4. Web
 
