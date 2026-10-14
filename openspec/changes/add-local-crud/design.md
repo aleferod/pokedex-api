@@ -30,7 +30,7 @@ US03 delivered the `LocalPokemon` aggregate, with proprietary-data value objects
 - **`ProprietaryData.of(...)` collects errors:** it builds each part, gathers every `InvalidFieldException`, and throws **`InvalidFieldsException(List<InvalidFieldException>)`**, a new domain exception mapped to one 400 with all entries. The existing constructor keeps failing fast, which suits trusted callers.
 - **`ProprietaryPatch` (domain):**
   - a tri-state `FieldPatch<T>` (sealed: `Keep`, `Clear`, `Set(value)`) for `region`, `habitatNotes`, `notes` and `internalTags`
-  - a `LocalizedNamesPatch` (`Map<String, String> put`, `Set<String> remove`)
+  - a `LocalizedNamesPatch` (`boolean clearAll` for `"localizedNames": null`, `Map<String, String> put`, `Set<String> remove`)
   - `applyTo(current)` returns the patched *raw* values, which are then validated through `ProprietaryData.of`, so PATCH and PUT share the same rules and error reporting.
 
 ### D3. Use cases (one class each)

@@ -4,8 +4,8 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 1. Domain
 
-- [ ] 1.1 Write `ProprietaryPatchTest`, `ProprietaryDataTest` additions (`of` collects every violation into `InvalidFieldsException`) and `LocalPokemonTest` additions (`withProprietary` advances `updatedAt` only; `requireVersion`) (D2). Verify: red against stubs.
-- [ ] 1.2 Implement `InvalidFieldsException`, `ProprietaryData.of`, `FieldPatch`, `ProprietaryPatch`, `LocalizedNamesPatch`, `LocalPokemon.withProprietary` and `requireVersion`. Verify: 1.1 green; ArchUnit green.
+- [x] 1.1 Write `ProprietaryPatchTest`, `ProprietaryDataTest` additions (`of` collects every violation into `InvalidFieldsException`) and `LocalPokemonTest` additions (`withProprietary` advances `updatedAt` only; `requireVersion`) (D2). Verify: red against stubs.
+- [x] 1.2 Implement `InvalidFieldsException`, `ProprietaryData.of`, `FieldPatch`, `ProprietaryPatch`, `LocalizedNamesPatch`, `LocalPokemon.withProprietary` and `requireVersion`. Verify: 1.1 green; ArchUnit green.
 
 ## 2. Application
 

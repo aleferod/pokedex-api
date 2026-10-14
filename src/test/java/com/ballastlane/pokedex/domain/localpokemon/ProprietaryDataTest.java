@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.ballastlane.pokedex.domain.shared.InvalidFieldException;
 import com.ballastlane.pokedex.domain.shared.InvalidFieldsException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -88,6 +89,17 @@ class ProprietaryDataTest {
                 null,
                 InternalTags.of(List.of("starter")),
                 null));
+  }
+
+  @Test
+  void should_reportTheTagField_when_aTagIsNull() {
+    assertThatThrownBy(() -> ProprietaryData.of(null, null, null, Arrays.asList("ok", null), null))
+        .isInstanceOfSatisfying(
+            InvalidFieldsException.class,
+            error ->
+                assertThat(error.violations())
+                    .extracting(InvalidFieldException::field)
+                    .containsExactly("internalTags"));
   }
 
   private static ProprietaryData withRegion(String region) {

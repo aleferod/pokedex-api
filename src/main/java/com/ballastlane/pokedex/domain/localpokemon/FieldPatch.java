@@ -1,6 +1,11 @@
 package com.ballastlane.pokedex.domain.localpokemon;
 
-/** One field of a merge patch (stub). */
+import java.util.Objects;
+
+/**
+ * One member of a JSON Merge Patch (RFC 7396), as a closed set of three cases: absent keeps the
+ * current value, {@code null} clears it, and a value replaces it.
+ */
 public sealed interface FieldPatch<T> permits FieldPatch.Keep, FieldPatch.Clear, FieldPatch.Set {
 
   static <T> FieldPatch<T> keep() {
@@ -15,17 +20,18 @@ public sealed interface FieldPatch<T> permits FieldPatch.Keep, FieldPatch.Clear,
     return new Set<>(value);
   }
 
+  /** The value after applying this patch to {@code current}. */
   T resolve(T current);
 
-  /** Leave the field as it is. */
+  /** The member was absent: keep the current value. */
   record Keep<T>() implements FieldPatch<T> {
     @Override
     public T resolve(T current) {
-      return null;
+      return current;
     }
   }
 
-  /** Remove the field's value. */
+  /** The member was {@code null}: remove the value. */
   record Clear<T>() implements FieldPatch<T> {
     @Override
     public T resolve(T current) {
@@ -33,11 +39,15 @@ public sealed interface FieldPatch<T> permits FieldPatch.Keep, FieldPatch.Clear,
     }
   }
 
-  /** Replace the field's value. */
+  /** The member had a value: replace the current one. */
   record Set<T>(T value) implements FieldPatch<T> {
+    public Set {
+      Objects.requireNonNull(value, "value (use clear() to remove a value)");
+    }
+
     @Override
     public T resolve(T current) {
-      return null;
+      return value;
     }
   }
 }
