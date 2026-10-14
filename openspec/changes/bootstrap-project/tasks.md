@@ -48,7 +48,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - a rejected id never appears in the output
   - the next request on the same thread doesn't contain the previous id
   - Verify: red until 3.4.
-- [ ] 3.4 Add the correlation id to the log pattern in `application.yml`. Verify: 3.3 is green.
+- [x] 3.4 Add the correlation id to the log pattern in `application.yml`. Verify: 3.3 is green.
 
 ## 4. Error contract (api-errors)
 

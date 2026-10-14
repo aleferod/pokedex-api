@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: pokedex-api
+
+logging:
+  pattern:
+    # Every log line carries the request's correlation id (set by CorrelationIdFilter in the MDC).
+    correlation: "[%X{correlationId:-}] "
