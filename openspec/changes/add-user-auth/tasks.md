@@ -88,7 +88,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - expired or tampered token → 401 with `error="invalid_token"`
   - no `Set-Cookie`; no CSRF needed
   - Verify: red.
-- [ ] 7.3 Implement `AuthController`, the DTOs, `AuthWebMapper`, the problem-detail entry point and access-denied handler, `SecurityConfiguration` (D8), `UserUseCaseConfiguration`, and the OpenAPI bearer scheme. Add the security beans to `@WebSliceTest`. Verify: 7.1 and 7.2 green; all earlier web-slice and integration tests still green.
+- [x] 7.3 Implement `AuthController`, the DTOs, `AuthWebMapper`, the problem-detail entry point and access-denied handler, `SecurityConfiguration` (D8), `UserUseCaseConfiguration`, and the OpenAPI bearer scheme. Add the security beans to `@WebSliceTest`. Verify: 7.1 and 7.2 green; all earlier web-slice and integration tests still green.
 
 ## 8. End-to-end and documentation
 
