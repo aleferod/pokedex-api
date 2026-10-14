@@ -27,18 +27,18 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 3. Application: ports and use cases
 
-- [ ] 3.1 Write `RegisterUserUseCaseTest` (Mockito):
+- [x] 3.1 Write `RegisterUserUseCaseTest` (Mockito):
   - happy path: hashes, saves `USER` with clock timestamps, returns the user
   - weak password → `WeakPasswordException` with no repository call
   - duplicate username or email → `DuplicateUserException(field)` and the hasher is never called
   - Verify: red.
-- [ ] 3.2 Write `AuthenticateUserUseCaseTest`:
+- [x] 3.2 Write `AuthenticateUserUseCaseTest`:
   - success returns the issued token and user
   - wrong password → `InvalidCredentialsException`
   - unknown user → `InvalidCredentialsException`, and the dummy hash is still checked
   - username lookup is case-insensitive
   - Verify: red.
-- [ ] 3.3 Write `GetCurrentUserUseCaseTest`: found → user; missing → `UserNotFoundException`. Verify: red.
+- [x] 3.3 Write `GetCurrentUserUseCaseTest`: found → user; missing → `UserNotFoundException`. Verify: red.
 - [ ] 3.4 Implement the ports (`RegisterUser`, `AuthenticateUser`, `GetCurrentUser`, `UserRepositoryPort`, `PasswordHasherPort`, `TokenPort`, `IssuedToken`) and the three use cases (D3). Verify: 3.1–3.3 green; JaCoCo gate on domain + application ≥ 85 %.
 
 ## 4. Persistence
