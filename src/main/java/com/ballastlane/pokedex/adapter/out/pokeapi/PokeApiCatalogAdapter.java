@@ -6,10 +6,13 @@ import com.ballastlane.pokedex.adapter.out.pokeapi.dto.PokemonSpeciesDto;
 import com.ballastlane.pokedex.adapter.out.pokeapi.dto.ResourceListDto;
 import com.ballastlane.pokedex.application.port.out.pokemon.CatalogUnavailableException;
 import com.ballastlane.pokedex.application.port.out.pokemon.PokemonCatalogPort;
+import com.ballastlane.pokedex.domain.pokemon.PokemonDetail;
+import com.ballastlane.pokedex.domain.pokemon.PokemonIdentifier;
 import com.ballastlane.pokedex.domain.pokemon.PokemonSummary;
 import com.ballastlane.pokedex.domain.shared.Page;
 import com.ballastlane.pokedex.domain.shared.PageRequest;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Adapter: {@link PokemonCatalogPort} on PokeAPI. One list call gives the page and the total; each
@@ -37,6 +40,11 @@ public class PokeApiCatalogAdapter implements PokemonCatalogPort {
       throw new CatalogUnavailableException(
           "The Pokémon catalog source is unavailable", upstreamFailure);
     }
+  }
+
+  @Override
+  public Optional<PokemonDetail> findDetail(PokemonIdentifier identifier) {
+    return Optional.empty(); // implemented test-first in group 4
   }
 
   private PokemonSummary summaryOf(NamedResourceDto entry) {
