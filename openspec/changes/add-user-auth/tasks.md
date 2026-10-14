@@ -97,7 +97,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - duplicate register → 409
   - `JWT_TTL`-style short lifetime → token rejected after expiry, using a context with ttl `PT1S`
   - Verify: red before 7.3 is complete, green after.
-- [ ] 8.2 Write ADR-0002 (stateless JWT with HS256; RS256/JWKS as the next step). Update the README (endpoint table with auth, auth section with curl examples, `JWT_SECRET` in the configuration table, roadmap). Update `docs/problems.md` (401 and 409 wording for login and registration). Verify: lychee offline shows no broken links.
+- [x] 8.2 Write ADR-0002 (stateless JWT with HS256; RS256/JWKS as the next step). Update the README (endpoint table with auth, auth section with curl examples, `JWT_SECRET` in the configuration table, roadmap). Update `docs/problems.md` (401 and 409 wording for login and registration). Verify: lychee offline shows no broken links.
 
 ## 9. Integration verification
 
