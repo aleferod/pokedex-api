@@ -20,7 +20,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - negative stat rejected
   - tree lists immutable
   - Verify: red against stubs.
-- [ ] 2.2 Implement `PokemonIdentifier`, `Height`, `BaseStats`, `EvolutionStage`, `PokemonDetail` and `PokemonNotFoundException`. Verify: 2.1 green; ArchUnit green.
+- [x] 2.2 Implement `PokemonIdentifier`, `Height`, `BaseStats`, `EvolutionStage`, `PokemonDetail` and `PokemonNotFoundException`. Verify: 2.1 green; ArchUnit green.
 
 ## 3. Application
 
