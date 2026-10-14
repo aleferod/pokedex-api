@@ -23,7 +23,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - 72/73-character boundary
   - `Admin@123`, `Trainer@123` and `Pikachu@25` accepted
   - Verify: red.
-- [ ] 2.4 Implement `PasswordPolicy` with the `PasswordRule` chain and `WeakPasswordException`. Verify: 2.3 green.
+- [x] 2.4 Implement `PasswordPolicy` with the `PasswordRule` chain and `WeakPasswordException`. Verify: 2.3 green.
 
 ## 3. Application: ports and use cases
 
