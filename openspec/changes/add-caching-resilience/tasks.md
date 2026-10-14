@@ -26,8 +26,8 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 4. Wiring and configuration
 
-- [ ] 4.1 Write `CatalogCacheConfigurationTest` (TTL and size from properties) and property-validation tests for the cache, retry and circuit-breaker settings (D4). Verify: red.
-- [ ] 4.2 Add `CatalogCacheProperties`, the nested PokeAPI settings, the cache manager and decorated-port wiring, `application.yml` defaults, test-profile values, and `CATALOG_CACHE_TTL` in `.env.example`. Verify: 4.1 green; context loads.
+- [x] 4.1 Write `CatalogCacheConfigurationTest` (TTL and size from properties) and property-validation tests for the cache, retry and circuit-breaker settings (D4). Verify: red.
+- [x] 4.2 Add `CatalogCacheProperties`, the nested PokeAPI settings, the cache manager and decorated-port wiring, `application.yml` defaults, test-profile values, and `CATALOG_CACHE_TTL` in `.env.example`. Verify: 4.1 green; context loads.
 
 ## 5. Integration
 
