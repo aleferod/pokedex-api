@@ -47,7 +47,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 5. Web
 
-- [ ] 5.1 Extend `PokemonControllerTest`:
+- [x] 5.1 Extend `PokemonControllerTest`:
   - `GET /api/v1/pokemon/1` body shape (stats object, `height` 0.7, nested `evolutionChain`)
   - unknown → 404 `not-found` naming the identifier
   - `pika chu`, `<script>`, `0`, `-1`, 51 characters → 400 `errors[idOrName]` without calling the use case
