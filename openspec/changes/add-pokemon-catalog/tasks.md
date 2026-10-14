@@ -23,7 +23,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 
 ## 4. PokeAPI adapter
 
-- [ ] 4.1 Write `BoundedFanOutTest`:
+- [x] 4.1 Write `BoundedFanOutTest`:
   - results in input order
   - the high-water mark of concurrent tasks never exceeds the cap
   - first failure propagates
