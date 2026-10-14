@@ -13,7 +13,19 @@ public record PokeApiProperties(
     Duration connectTimeout,
     Duration readTimeout,
     Integer maxConcurrency,
-    String userAgent) {
+    String userAgent,
+    Retry retry,
+    CircuitBreaker circuitBreaker) {
+
+  /** Retry settings (stub). */
+  public record Retry(Integer maxAttempts, Duration initialBackoff) {}
+
+  /** Circuit-breaker settings (stub). */
+  public record CircuitBreaker(
+      Float failureRateThreshold,
+      Integer minimumCalls,
+      Integer slidingWindow,
+      Duration openDuration) {}
 
   public static final int MAX_CONCURRENCY_LIMIT = 64;
 
