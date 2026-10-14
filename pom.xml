@@ -32,7 +32,6 @@
         <spotless-maven-plugin.version>3.10.4</spotless-maven-plugin.version>
         <google-java-format.version>1.37.0</google-java-format.version>
         <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
-        <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
         <!-- Quality gate: minimum line coverage of the domain and application layers -->
         <coverage.line.minimum>0.85</coverage.line.minimum>
     </properties>
@@ -111,6 +110,40 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-build-rules</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[21,)</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>[3.9,)</version>
+                                </requireMavenVersion>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <!-- Tests run against real PostgreSQL (Testcontainers), never an in-memory substitute -->
+                                        <exclude>com.h2database:h2</exclude>
+                                        <exclude>org.hsqldb:hsqldb</exclude>
+                                        <exclude>org.apache.derby</exclude>
+                                        <!-- JUnit 6 (Jupiter) only -->
+                                        <exclude>junit:junit</exclude>
+                                        <exclude>org.junit.vintage</exclude>
+                                    </excludes>
+                                    <message>In-memory databases and JUnit 4 are banned: use Testcontainers PostgreSQL and JUnit Jupiter.</message>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

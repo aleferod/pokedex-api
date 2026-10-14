@@ -29,8 +29,8 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - `java.util.logging`
   - Verify: red, because the `ArchitectureRules` stub returns rules that match nothing.
 - [x] 2.2 Implement `ArchitectureRules` (design D4) and `ArchitectureTest` over production classes. Verify: the self-test is green (every fixture violation reported) and `ArchitectureTest` is green.
-- [ ] 2.3 Add the Maven Enforcer rules: Java ≥ 21, Maven ≥ 3.9, banned `com.h2database:h2` and `junit:junit`. Verify: temporarily adding H2 makes `./mvnw validate` fail and name the dependency (revert afterwards, not committed).
-- [ ] 2.4 Write ADR-0001 (Clean/Hexagonal Architecture, single module + ArchUnit trade-off). Verify: linked from the ADR index.
+- [x] 2.3 Add the Maven Enforcer rules: Java ≥ 21, Maven ≥ 3.9, banned `com.h2database:h2` and `junit:junit`. Verify: temporarily adding H2 makes `./mvnw validate` fail and name the dependency (revert afterwards, not committed).
+- [x] 2.4 Write ADR-0001 (Clean/Hexagonal Architecture, single module + ArchUnit trade-off). Verify: linked from the ADR index.
 
 ## 3. Request correlation (request-correlation)
 
