@@ -26,11 +26,14 @@ public interface PokemonCatalogPort {
   Optional<PokemonDetail> findDetail(PokemonIdentifier identifier);
 
   /**
-   * Like {@link #findDetail}, but straight from the source (stub).
+   * Like {@link #findDetail}, but straight from the source: an implementation that caches must
+   * bypass its cache, and should keep what it read. Used when the answer is persisted (the local
+   * replica), where a stale copy would be stored for good. Without a cache it is {@link
+   * #findDetail}.
    *
    * @throws CatalogUnavailableException the source cannot answer right now
    */
   default Optional<PokemonDetail> findFreshDetail(PokemonIdentifier identifier) {
-    return Optional.empty();
+    return findDetail(identifier);
   }
 }

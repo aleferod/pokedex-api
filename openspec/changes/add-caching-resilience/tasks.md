@@ -4,8 +4,8 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 1. Fresh reads (application)
 
-- [ ] 1.1 Write tests: `GetPokemonDetailUseCaseTest` for `getFresh` (calls `findFreshDetail`; unknown → not found); switch `SyncPokemonUseCaseTest` and `CreateLocalPokemonUseCaseTest` to expect `getFresh` (D2). Verify: red.
-- [ ] 1.2 Add `PokemonCatalogPort.findFreshDetail` (default) and `GetPokemonDetail.getFresh`, and use it in sync and create. Verify: 1.1 green; coverage gate green.
+- [x] 1.1 Write tests: `GetPokemonDetailUseCaseTest` for `getFresh` (calls `findFreshDetail`; unknown → not found); switch `SyncPokemonUseCaseTest` and `CreateLocalPokemonUseCaseTest` to expect `getFresh` (D2). Verify: red.
+- [x] 1.2 Add `PokemonCatalogPort.findFreshDetail` (default) and `GetPokemonDetail.getFresh`, and use it in sync and create. Verify: 1.1 green; coverage gate green.
 
 ## 2. Cache decorator
 

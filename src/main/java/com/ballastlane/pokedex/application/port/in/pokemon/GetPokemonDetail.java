@@ -13,6 +13,13 @@ public interface GetPokemonDetail {
    */
   PokemonDetail get(PokemonIdentifier identifier);
 
-  /** Like {@link #get}, but straight from the source (stub). */
+  /**
+   * Like {@link #get}, but straight from the source, never from a cache. For callers that store the
+   * answer.
+   *
+   * @throws com.ballastlane.pokedex.domain.pokemon.PokemonNotFoundException no Pokémon matches
+   * @throws com.ballastlane.pokedex.application.port.out.pokemon.CatalogUnavailableException the
+   *     catalog source cannot answer right now
+   */
   PokemonDetail getFresh(PokemonIdentifier identifier);
 }
