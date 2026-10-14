@@ -39,7 +39,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - `GET /{id}` 200 with `ETag`, and 404
   - bulk response shape
   - Verify: red.
-- [ ] 4.2 Implement `LocalPokemonController`, `LocalPokemonResponse`, `BulkSyncResponse`, `LocalPokemonWebMapper`, the 404 mapping and the use-case wiring. Verify: 4.1 green.
+- [x] 4.2 Implement `LocalPokemonController`, `LocalPokemonResponse`, `BulkSyncResponse`, `LocalPokemonWebMapper`, the 404 mapping and the use-case wiring. Verify: 4.1 green.
 
 ## 5. End-to-end and docs
 
