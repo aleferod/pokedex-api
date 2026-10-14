@@ -22,6 +22,9 @@ server:
       enabled: false
 
 app:
+  cors:
+    # Comma-separated exact origins (no wildcards). Default: the Vite dev server of pokedex-web.
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173}
   problems:
     # Problem "type" URIs resolve to the documentation of each problem type.
     base-uri: https://github.com/aleferod/pokedex-api/blob/main/docs/problems.md#

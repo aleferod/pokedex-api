@@ -76,7 +76,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - PATCH preflight with `Authorization`, `If-Match` → advertised
   - simple GET exposes `Location`, `ETag` and `X-Correlation-Id`
   - Verify: red.
-- [ ] 5.3 Implement `CorsProperties` (validated record) and the shared `CorsConfigurationSource` + `CorsFilter` bean (design D7). Verify: 5.1 and 5.2 are green.
+- [x] 5.3 Implement `CorsProperties` (validated record), the shared `CorsConfigurationSource` and the `ProblemDetailCorsFilter`, which writes its 403 rejections through `ProblemDetailWriter` (design D7). Verify: 5.1 and 5.2 are green.
 
 ## 6. Configuration, schema and operational endpoints (service-configuration, operational-endpoints)
 

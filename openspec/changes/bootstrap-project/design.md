@@ -73,8 +73,11 @@ Constraints:
 
 ### D7. CORS through one shared `CorsConfigurationSource`
 - **Binding:** `infrastructure.web.CorsProperties` is a validated `@ConfigurationProperties` record, bound from `APP_CORS_ALLOWED_ORIGINS`. Its compact constructor rejects `*` and blank entries, so a misconfiguration fails at startup.
-- **Source:** `infrastructure.web.CorsConfiguration` builds a `UrlBasedCorsConfigurationSource` for `/api/**`. For now a `CorsFilter` registers it, at an order right after the correlation filter.
-- **Later:** `add-user-auth` switches to `http.cors(withDefaults())`, which picks up the same bean, so the rules are defined once.
+- **Source:** `infrastructure.web.CrossOriginConfiguration` builds the one `UrlBasedCorsConfigurationSource` bean for `/api/**`. (It's not called `CorsConfiguration`, to avoid clashing with Spring's class of that name.)
+- **Filter:** `adapter.in.web.cors.ProblemDetailCorsFilter` follows the same flow as Spring's `CorsFilter`. It is registered right after the correlation filter.
+  - *Refined during implementation:* Spring's `DefaultCorsProcessor` rejects a request with a plain-text body (`403 Invalid CORS request`), which breaks the `api-errors` contract. So our filter uses a processor that only sets 403, and then writes a `forbidden` problem detail through `adapter.in.web.error.ProblemDetailWriter`.
+  - That writer serializes problems to the servlet response for errors raised in filters. `add-user-auth` reuses it for 401/403 from the security chain.
+- **Later:** this filter runs before Spring Security's filter chain (order −100), so preflights are answered before authentication. `add-user-auth` therefore does not need `http.cors()`. If it ever enables it, `http.cors()` would pick up the same `corsConfigurationSource` bean, so the rules stay defined once.
 
 ### D8. Configuration and profiles
 - **Layout:** `application.yml` holds shared defaults plus three profile files:
