@@ -50,7 +50,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - PokeAPI 500 during re-sync → 503 and the record unchanged
   - bulk `limit=3` → created 3
   - Verify: green with full `verify`.
-- [ ] 5.2 Update the README (US03 row ✅; a local-replica section on sync semantics, proprietary fields and the audit/version/ETag; the sync rows in the endpoint table; ER diagram in Mermaid) and `docs/problems.md` (404 also for local records). Verify: lychee offline shows no broken links.
+- [x] 5.2 Update the README (US03 row ✅; a local-replica section on sync semantics, proprietary fields and the audit/version/ETag; the sync rows in the endpoint table; ER diagram in Mermaid) and `docs/problems.md` (404 also for local records). Verify: lychee offline shows no broken links.
 
 ## 6. Integration verification
 
