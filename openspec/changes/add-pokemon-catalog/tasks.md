@@ -55,7 +55,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
   - `CatalogUnavailableException` → 503 `service-unavailable` with `Retry-After` and no internals
   - anonymous access allowed
   - Verify: red.
-- [ ] 5.2 Implement `PokemonController`, `PokemonSummaryResponse`, `PageResponse` and `PokemonWebMapper`, plus the `GlobalExceptionHandler` additions (method-validation and type-mismatch errors, 503 mapping) (D5). Verify: 5.1 green; all earlier slice tests green.
+- [x] 5.2 Implement `PokemonController`, `PokemonSummaryResponse`, `PageResponse` and `PokemonWebMapper`, plus the `GlobalExceptionHandler` additions (method-validation and type-mismatch errors, 503 mapping) (D5). Verify: 5.1 green; all earlier slice tests green.
 
 ## 6. Wiring, configuration and end-to-end
 

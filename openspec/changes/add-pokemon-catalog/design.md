@@ -70,7 +70,7 @@ PokeAPI v2 (checked against the live API on 2026-10-14):
   - **WebClient/Reactor.** Adding a reactive stack for one fan-out isn't worth it in an MVC app.
 
 ### D5. Web (`adapter.in.web.pokemon`)
-- **`PokemonController`:** `GET /api/v1/pokemon` with `@RequestParam` `page` (default 0) and `size` (default 20), annotated `@Min(0)` and `@Min(1) @Max(100)`. The controller is `@Validated`.
+- **`PokemonController`:** `GET /api/v1/pokemon` with `@RequestParam` `page` (default 0) and `size` (default 20), annotated `@Min(0)` and `@Min(1) @Max(100)`. The controller is deliberately **not** `@Validated`. *Refined during implementation:* with `@Validated`, Boot's AOP `MethodValidationPostProcessor` would validate first and throw `ConstraintViolationException`, which surfaces as a 500. Without it, Spring MVC's built-in method validation handles the constraints.
   - Spring's built-in method validation raises `HandlerMethodValidationException`, which reports **all** invalid parameters at once.
   - The domain's `PageRequest` validates again (defense in depth).
 - **Responses:** `PokemonSummaryResponse` (`weight` as a `BigDecimal` in kg, documented in OpenAPI) and a generic `PageResponse<T>`. `PokemonWebMapper` (DTO + Mapper) builds them.
