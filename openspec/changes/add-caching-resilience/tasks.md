@@ -46,11 +46,11 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 ## 6. Integration verification
 
 - [x] 6.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
-- [ ] 6.2 From a fresh clone with `docker compose up --build` against the real PokeAPI:
+- [x] 6.2 From a fresh clone with `docker compose up --build` against the real PokeAPI:
   - time a first and a second request for the same page and detail (the second takes milliseconds, because it's served from the cache)
   - re-sync a Pokémon and check that the detail is still served
   - Verify: as described; `docker compose down -v`.
-- [ ] 6.3 Run `openspec validate add-caching-resilience --strict` and gitleaks. Verify: valid, no leaks.
+- [x] 6.3 Run `openspec validate add-caching-resilience --strict` and gitleaks. Verify: valid, no leaks.
 
 ## Workflow follow-up
 
