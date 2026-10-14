@@ -48,7 +48,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 
 ## 5. Web API
 
-- [ ] 5.1 Write `PokemonControllerTest` (`@WebSliceTest`, mocked `ListPokemon`):
+- [x] 5.1 Write `PokemonControllerTest` (`@WebSliceTest`, mocked `ListPokemon`):
   - envelope and item JSON (`weight` 6.9)
   - defaults page 0 / size 20 passed to the use case
   - `size=101` → errors[size]; `page=-1&size=-5` → errors[page, size]; `page=abc` → errors[page]
