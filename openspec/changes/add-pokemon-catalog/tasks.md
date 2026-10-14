@@ -4,7 +4,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 
 ## 1. Test support
 
-- [ ] 1.1 Add `org.wiremock:wiremock-standalone` 3.13.2 (test scope). Save trimmed, dated PokeAPI fixtures under `src/test/resources/pokeapi/`: the list page (3 entries, count 1351), Pokémon #1/#2/#3/#25 and species #1/#2/#3/#25. Verify: fixtures are valid JSON under 10 KB each; `verify` stays green.
+- [x] 1.1 Add `org.wiremock:wiremock-standalone` 3.13.2 (test scope). Save trimmed, dated PokeAPI fixtures under `src/test/resources/pokeapi/`: the list page (3 entries, count 1351), Pokémon #1/#2/#3/#25 and species #1/#2/#3/#25. Verify: fixtures are valid JSON under 10 KB each; `verify` stays green.
 
 ## 2. Domain: catalog values and paging
 
