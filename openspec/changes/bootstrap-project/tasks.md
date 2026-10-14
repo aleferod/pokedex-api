@@ -114,7 +114,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 - [x] 7.1 Configure the compiler with `-Xlint:all,-processing -Werror`. Verify: a temporary raw-type usage fails the build (reverted, not committed).
 - [x] 7.2 Configure Spotless (google-java-format) with `check` bound to `verify`, and run `spotless:apply` once. Verify: a temporarily mis-indented file fails `./mvnw verify` and names the file, and `./mvnw spotless:apply` fixes it.
-- [ ] 7.3 Configure JaCoCo: agent for unit and integration tests, merged HTML report, and a `check` on `domain` + `application` with LINE ≥ 0.85 (design D11). Verify: `target/site/jacoco/index.html` exists after `verify`, and a temporary untested class in `domain` fails the check with the measured ratio (reverted, not committed).
+- [x] 7.3 Configure JaCoCo: agent for unit and integration tests, merged HTML report, and a `check` on `domain` + `application` with LINE ≥ 0.85 (design D11). Verify: `target/site/jacoco/index.html` exists after `verify`, and a temporary untested class in `domain` fails the check with the measured ratio (reverted, not committed).
 
 ## 8. Container delivery (container-delivery)
 
