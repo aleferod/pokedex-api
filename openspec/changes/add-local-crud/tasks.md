@@ -19,14 +19,14 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 3. Persistence
 
-- [ ] 3.1 Extend `LocalPokemonPersistenceAdapterIT`:
+- [x] 3.1 Extend `LocalPokemonPersistenceAdapterIT`:
   - tag filter (case-insensitive) and name filter, including `%`/`_` escaping
   - combined filters
   - paging totals and order
   - `existsByPokeapiId`
   - delete; stale delete
   - Verify: red.
-- [ ] 3.2 Implement the native filtered page query with a count query, `@BatchSize` on localized names, `existsByPokeapiId` and the version-checked delete (D4). Verify: 3.1 green.
+- [x] 3.2 Implement the native filtered page query with a count query, `@BatchSize` on localized names, `existsByPokeapiId` and the version-checked delete (D4). Verify: 3.1 green.
 
 ## 4. Web
 

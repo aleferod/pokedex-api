@@ -14,6 +14,7 @@ import java.util.Optional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Repository adapter: implements {@link LocalPokemonRepositoryPort} on PostgreSQL. Optimistic
@@ -61,16 +62,41 @@ public class LocalPokemonPersistenceAdapter implements LocalPokemonRepositoryPor
 
   @Override
   public boolean existsByPokeapiId(PokemonId pokeapiId) {
-    return false; // stub
+    return repository.existsByPokeapiId(pokeapiId.value());
   }
 
   @Override
   public Page<LocalPokemon> findAll(LocalPokemonFilter filter, PageRequest page) {
-    return Page.of(java.util.List.of(), page, 0); // stub
+    var rows =
+        repository.findFiltered(
+            filter.tag(),
+            containsPattern(filter.name()),
+            org.springframework.data.domain.PageRequest.of(page.page(), page.size()));
+    return Page.of(
+        rows.getContent().stream().map(LocalPokemonPersistenceMapper::toDomain).toList(),
+        page,
+        rows.getTotalElements());
   }
 
   @Override
+  @Transactional
   public void delete(LocalPokemon pokemon) {
-    // stub
+    try {
+      // Merging the detached copy fails if its version is not the stored one; the DELETE itself
+      // is also guarded by "WHERE version = ?", which catches a writer in between.
+      repository.delete(LocalPokemonPersistenceMapper.toEntity(pokemon));
+      repository.flush();
+    } catch (OptimisticLockingFailureException stale) {
+      throw new StaleLocalPokemonException(pokemon.id());
+    }
+  }
+
+  /** {@code %value%} for ILIKE, with the wildcards and the escape character taken literally. */
+  private static String containsPattern(String value) {
+    if (value == null) {
+      return null;
+    }
+    String escaped = value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
+    return "%" + escaped + "%";
   }
 }
