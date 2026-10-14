@@ -6,13 +6,21 @@ import com.ballastlane.pokedex.domain.pokemon.PokemonSummary;
 import com.ballastlane.pokedex.domain.shared.Page;
 import com.ballastlane.pokedex.domain.shared.PageRequest;
 
-/** Lists the catalog (stub). */
+/**
+ * Lists the catalog. Deliberately thin today: paging rules live in {@link PageRequest}, and
+ * caching/resilience will wrap the {@link PokemonCatalogPort} (Decorator) without touching this
+ * class. Filtering or ordering rules would be added here.
+ */
 public class ListPokemonUseCase implements ListPokemon {
 
-  public ListPokemonUseCase(PokemonCatalogPort catalog) {}
+  private final PokemonCatalogPort catalog;
+
+  public ListPokemonUseCase(PokemonCatalogPort catalog) {
+    this.catalog = catalog;
+  }
 
   @Override
   public Page<PokemonSummary> list(PageRequest request) {
-    return null;
+    return catalog.findPage(request);
   }
 }
