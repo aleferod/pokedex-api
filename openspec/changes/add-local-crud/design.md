@@ -37,13 +37,15 @@ US03 delivered the `LocalPokemon` aggregate, with proprietary-data value objects
 | Use case | Behaviour |
 |---|---|
 | `ListLocalPokemon` | `list(LocalPokemonFilter(tag, name), PageRequest)` → `Page<LocalPokemon>`. The tag is normalized like `InternalTags` (trim, lower case). |
-| `CreateLocalPokemon` | `create(CreateLocalPokemonCommand(pokeapiId, raw proprietary values), actor)` |
-| `ReplaceLocalPokemon` | `replace(id, expectedVersion, raw values)` |
-| `PatchLocalPokemon` | `patch(id, expectedVersion, ProprietaryPatch)` |
-| `DeleteLocalPokemon` | `delete(id, Optional<Long> expectedVersion)` |
+| `CreateLocalPokemon` | `create(CreateLocalPokemonCommand(pokeapiId, ProprietaryValues), actor)` |
+| `ReplaceLocalPokemon` | `replace(id, ExpectedVersion, ProprietaryValues)` |
+| `PatchLocalPokemon` | `patch(id, ExpectedVersion, ProprietaryPatch)` |
+| `DeleteLocalPokemon` | `delete(id, ExpectedVersion)` |
+
+`ExpectedVersion` is `exactly(n)` (from `If-Match`) or `any()` (`If-Match: *`, or a `DELETE` without the header), so no use case takes an `Optional` parameter. `ProprietaryValues` holds the raw client values and converts through `ProprietaryData.of`. `LocalPokemonFilter` is a domain value object, because both the inbound and the outbound port use it; it normalizes the tag like `InternalTags` and lower-cases the name, and blank criteria are ignored.
 
 **Create flow:**
-1. Validate the proprietary values first (cheap; errors reported together).
+1. Validate `pokeapiId` (positive) and the proprietary values first (cheap; every error reported together).
 2. `existsByPokeapiId` → `DuplicateLocalPokemonException`, mapped to **409 with `errors[pokeapiId]`**.
 3. `GetPokemonDetail.get(ById)`. A `PokemonNotFoundException` becomes `InvalidFieldException("pokeapiId", "no Pokémon has this number")` → 400; unavailability → 503.
 4. Build with `LocalPokemon.importFrom(...).withProprietary(...)` and save. The unique key still guards races (409).

@@ -9,13 +9,13 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 2. Application
 
-- [ ] 2.1 Write tests for the five use cases (D3):
+- [x] 2.1 Write tests for the five use cases (D3):
   - list (normalized tag)
   - create (validation first; duplicate before PokeAPI; unknown number → `InvalidFieldException(pokeapiId)`; unavailable)
   - replace/patch (404; stale; rules)
   - delete (404; stale; no version)
   - Verify: red.
-- [ ] 2.2 Implement the ports (`ListLocalPokemon`, `CreateLocalPokemon`, `ReplaceLocalPokemon`, `PatchLocalPokemon`, `DeleteLocalPokemon`, `LocalPokemonFilter`, the repository port additions) and the use cases. Verify: 2.1 green; coverage ≥ 85 %.
+- [x] 2.2 Implement the ports (`ListLocalPokemon`, `CreateLocalPokemon`, `ReplaceLocalPokemon`, `PatchLocalPokemon`, `DeleteLocalPokemon`, `LocalPokemonFilter`, the repository port additions) and the use cases. Verify: 2.1 green; coverage ≥ 85 %.
 
 ## 3. Persistence
 

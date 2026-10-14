@@ -16,6 +16,13 @@ public record ExpectedVersion(Long value) {
     return new ExpectedVersion(value);
   }
 
-  /** Stub. */
-  public void verify(LocalPokemon current) {}
+  /**
+   * @throws com.ballastlane.pokedex.domain.localpokemon.StaleLocalPokemonException {@code current}
+   *     is not at the expected version
+   */
+  public void verify(LocalPokemon current) {
+    if (value != null) {
+      current.requireVersion(value);
+    }
+  }
 }

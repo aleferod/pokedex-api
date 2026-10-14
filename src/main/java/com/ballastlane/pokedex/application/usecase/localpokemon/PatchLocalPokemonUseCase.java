@@ -5,10 +5,11 @@ import com.ballastlane.pokedex.application.port.in.localpokemon.PatchLocalPokemo
 import com.ballastlane.pokedex.application.port.out.localpokemon.LocalPokemonRepositoryPort;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemon;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonId;
+import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonNotFoundException;
 import com.ballastlane.pokedex.domain.localpokemon.ProprietaryPatch;
 import java.time.Clock;
 
-/** Stub. */
+/** Applies a JSON Merge Patch to the proprietary fields, with the same version checks as PUT. */
 public class PatchLocalPokemonUseCase implements PatchLocalPokemon {
 
   private final LocalPokemonRepositoryPort repository;
@@ -21,6 +22,10 @@ public class PatchLocalPokemonUseCase implements PatchLocalPokemon {
 
   @Override
   public LocalPokemon patch(LocalPokemonId id, ExpectedVersion expected, ProprietaryPatch patch) {
-    return null;
+    LocalPokemon current =
+        repository.findById(id).orElseThrow(() -> new LocalPokemonNotFoundException(id));
+    expected.verify(current);
+    return repository.save(
+        current.withProprietary(patch.applyTo(current.proprietary()), clock.instant()));
   }
 }

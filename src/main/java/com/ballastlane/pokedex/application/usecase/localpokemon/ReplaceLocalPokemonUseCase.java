@@ -6,9 +6,13 @@ import com.ballastlane.pokedex.application.port.in.localpokemon.ReplaceLocalPoke
 import com.ballastlane.pokedex.application.port.out.localpokemon.LocalPokemonRepositoryPort;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemon;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonId;
+import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonNotFoundException;
 import java.time.Clock;
 
-/** Stub. */
+/**
+ * Replaces every proprietary field (PUT). The version is checked here against the client's
+ * expectation and again by the store at save, which catches a writer that slipped in between.
+ */
 public class ReplaceLocalPokemonUseCase implements ReplaceLocalPokemon {
 
   private final LocalPokemonRepositoryPort repository;
@@ -22,6 +26,9 @@ public class ReplaceLocalPokemonUseCase implements ReplaceLocalPokemon {
   @Override
   public LocalPokemon replace(
       LocalPokemonId id, ExpectedVersion expected, ProprietaryValues values) {
-    return null;
+    LocalPokemon current =
+        repository.findById(id).orElseThrow(() -> new LocalPokemonNotFoundException(id));
+    expected.verify(current);
+    return repository.save(current.withProprietary(values.toProprietaryData(), clock.instant()));
   }
 }

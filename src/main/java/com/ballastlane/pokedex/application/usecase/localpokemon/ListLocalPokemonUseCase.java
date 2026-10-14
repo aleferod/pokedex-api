@@ -7,7 +7,7 @@ import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonFilter;
 import com.ballastlane.pokedex.domain.shared.Page;
 import com.ballastlane.pokedex.domain.shared.PageRequest;
 
-/** Stub. */
+/** Lists local records; filtering and ordering happen in the store, where the indexes are. */
 public class ListLocalPokemonUseCase implements ListLocalPokemon {
 
   private final LocalPokemonRepositoryPort repository;
@@ -18,6 +18,6 @@ public class ListLocalPokemonUseCase implements ListLocalPokemon {
 
   @Override
   public Page<LocalPokemon> list(LocalPokemonFilter filter, PageRequest page) {
-    return null;
+    return repository.findAll(filter, page);
   }
 }
