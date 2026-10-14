@@ -36,7 +36,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
   - abilities ordered by slot
   - Verify: red.
 - [x] 4.4 Implement the PokeAPI DTOs and `PokeApiMapper` (D3). Verify: 4.3 green.
-- [ ] 4.5 Write `PokeApiCatalogAdapterTest` (WireMock):
+- [x] 4.5 Write `PokeApiCatalogAdapterTest` (WireMock):
   - first page of 3 mapped in order with totals
   - past-the-end page empty with totals
   - list 500, connection refused and read timeout → `CatalogUnavailableException`
