@@ -29,7 +29,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
   - first failure propagates
   - MDC correlation id visible inside tasks and absent afterwards
   - Verify: red.
-- [ ] 4.2 Implement `BoundedFanOut` (D4). Verify: 4.1 green.
+- [x] 4.2 Implement `BoundedFanOut` (D4). Verify: 4.1 green.
 - [ ] 4.3 Write `PokeApiMapperTest` using the fixtures:
   - bulbasaur → id 1, sprite, `Seed Pokémon`, 6.9 kg, `[overgrow, chlorophyll]`
   - no English genus → `null` category; no sprite → `null`
