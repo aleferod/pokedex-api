@@ -3,7 +3,9 @@ package com.ballastlane.pokedex.infrastructure.pokeapi;
 import com.ballastlane.pokedex.adapter.out.pokeapi.BoundedFanOut;
 import com.ballastlane.pokedex.adapter.out.pokeapi.PokeApiCatalogAdapter;
 import com.ballastlane.pokedex.adapter.out.pokeapi.PokeApiClient;
+import com.ballastlane.pokedex.adapter.out.pokeapi.PokeApiResilience;
 import com.ballastlane.pokedex.application.port.out.pokemon.PokemonCatalogPort;
+import java.time.Duration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +21,10 @@ public class PokeApiConfiguration {
         properties.baseUrl(),
         properties.connectTimeout(),
         properties.readTimeout(),
-        properties.userAgent());
+        properties.userAgent(),
+        new PokeApiResilience(
+            new PokeApiResilience.Settings(
+                3, Duration.ofMillis(200), 50f, 10, 20, Duration.ofSeconds(30))));
   }
 
   @Bean
