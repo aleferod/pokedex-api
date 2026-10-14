@@ -11,7 +11,8 @@ Exposes the endpoints that operators, container orchestrators and API consumers 
 
 #### Scenario: Healthy service
 - **WHEN** an anonymous client calls `GET /actuator/health` and the database is reachable
-- **THEN** the response status is 200 and the body is `{"status":"UP"}`, with no component details
+- **THEN** the response status is 200 and the body's `status` is `UP`
+- **AND** the body contains no component details: only the status and the names of the probe groups (`liveness`, `readiness`)
 
 #### Scenario: Database unreachable
 - **WHEN** an anonymous client calls `GET /actuator/health` and the database is unreachable

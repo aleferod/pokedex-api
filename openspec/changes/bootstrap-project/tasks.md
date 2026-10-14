@@ -122,7 +122,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - `docker build -t pokedex-api:dev .` succeeds
   - `docker image inspect --format '{{.Config.User}}' pokedex-api:dev` prints `app`
   - the image has no `javac`
-- [ ] 8.2 Write `docker-compose.yml` (design D12). Verify, from a fresh clone in a temp dir:
+- [x] 8.2 Write `docker-compose.yml` (design D12). Verify, from a fresh clone in a temp dir:
   - `cp .env.example .env && docker compose up --build -d` brings both services to `healthy`
   - `curl -s localhost:8080/actuator/health` returns `{"status":"UP"}`
   - after `docker compose down` and `up -d`, `flyway_schema_history` still holds V1

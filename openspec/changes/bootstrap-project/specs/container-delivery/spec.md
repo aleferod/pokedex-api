@@ -27,7 +27,7 @@ From a fresh clone, `cp .env.example .env && docker compose up --build` SHALL st
 #### Scenario: Clean clone start
 - **WHEN** a developer runs `cp .env.example .env && docker compose up --build` on a fresh clone with nothing but Docker installed
 - **THEN** the database becomes healthy first, then the API becomes healthy
-- **AND** `GET http://localhost:8080/actuator/health` returns `{"status":"UP"}`
+- **AND** `GET http://localhost:8080/actuator/health` returns 200 with `status` `UP`
 
 #### Scenario: Data survives a restart
 - **WHEN** the stack is stopped with `docker compose down` (without removing volumes) and started again
