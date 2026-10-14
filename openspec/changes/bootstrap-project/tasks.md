@@ -131,7 +131,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 9. Continuous integration (build-governance: CI)
 
-- [ ] 9.1 Write `.github/workflows/ci.yml` with jobs `build` (verify + JaCoCo artifact + coverage in the job summary), `openspec`, `docker` and `secrets` (design D14). Verify: the workflow passes `actionlint` (run via the `rhysd/actionlint` container).
+- [x] 9.1 Write `.github/workflows/ci.yml` with jobs `build` (verify + JaCoCo artifact + coverage in the job summary), `openspec`, `docker` and `secrets` (design D14). Verify: the workflow passes `actionlint` (run via the `rhysd/actionlint` container).
 - [ ] 9.2 Add the CI status badge and the coverage-artifact note to the README. Verify: the badge URL points at `aleferod/pokedex-api` `ci.yml` on `main`.
 
 ## 10. README skeleton

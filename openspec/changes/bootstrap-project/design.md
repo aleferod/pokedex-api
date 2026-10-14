@@ -134,8 +134,9 @@ Constraints:
      - `ENTRYPOINT` runs `JarLauncher` with `-XX:MaxRAMPercentage=75`
 - **Compose:**
   - `postgres:16-alpine` with a `pg_isready` healthcheck and named volume `pokedex-db-data`
-  - `api` builds `.`, uses `env_file: .env` and `SPRING_PROFILES_ACTIVE=docker`, and has `depends_on: postgres: condition: service_healthy`
-  - Postgres is published on `${DB_PORT:-5432}` so the `local` profile can reach it
+  - `api` builds `.`, sets `SPRING_PROFILES_ACTIVE=docker`, and has `depends_on: postgres: condition: service_healthy`
+  - *Refined during implementation:* `api` gets an explicit `environment:` list interpolated from `.env` (`DB_URL` pointing at `postgres`, `DB_USERNAME`, `DB_PASSWORD`, `APP_CORS_ALLOWED_ORIGINS`) instead of `env_file: .env`. Unrelated `.env` entries never reach the container, and a host-oriented `DB_URL` can't override the Compose one. A missing `DB_PASSWORD` stops Compose with `run cp .env.example .env`.
+  - Postgres is published on `${DB_PORT:-5433}` so the `local` profile can reach it. It's 5433 rather than 5432 so it doesn't clash with a PostgreSQL already running on the host, which was the case on the build machine.
 
 ### D13. `scripts/verify-in-docker.sh`
 It runs:
