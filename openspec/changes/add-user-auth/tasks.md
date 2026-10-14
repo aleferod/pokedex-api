@@ -55,7 +55,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 - [x] 5.1 Write `BCryptPasswordHasherTest` (hash ≠ raw, starts with `$2`, matches, mismatch, two hashes of the same password differ) and `JwtTokenIssuerTest` (claims `sub`/`username`/`role`/`iss`, `exp` = fixed clock + TTL, decodable with the decoder from the same secret). Verify: red.
 - [x] 5.2 Implement `BCryptPasswordHasher`, `JwtTokenIssuer`, `JwtProperties` and `JwtConfiguration` (encoder, decoder, authentication converter). Verify: 5.1 green.
-- [ ] 5.3 Write `JwtPropertiesTest` (secret shorter than 32 bytes → binding failure stating the minimum) and extend `ProfileConfigurationTest` (docker profile without `JWT_SECRET` → startup fails naming it). Verify: red, then green after adding `app.security.jwt.secret` to `RequiredSettingsEnvironmentPostProcessor`.
+- [x] 5.3 Write `JwtPropertiesTest` (secret shorter than 32 bytes → binding failure stating the minimum) and extend `ProfileConfigurationTest` (docker profile without `JWT_SECRET` → startup fails naming it). Verify: red, then green after adding `app.security.jwt.secret` to `RequiredSettingsEnvironmentPostProcessor`.
 
 ## 6. Field-level errors and domain-exception mapping
 
