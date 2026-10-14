@@ -13,7 +13,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 2. Domain
 
-- [ ] 2.1 Write `PokemonIdentifierTest`, `HeightTest`, `BaseStatsTest` and `EvolutionStageTest` (D1):
+- [x] 2.1 Write `PokemonIdentifierTest`, `HeightTest`, `BaseStatsTest` and `EvolutionStageTest` (D1):
   - `25` → id; `Pikachu` → name `pikachu`; `mr-mime`, `porygon2` → names
   - `0`, `100000`, `-1`, `pika chu`, `<script>`, empty, 51 characters → `InvalidFieldException("idOrName")`
   - 7 dm → 0.7 m
