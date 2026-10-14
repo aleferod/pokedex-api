@@ -18,7 +18,7 @@ TDD convention as in the earlier changes: each `test:` commit is red on assertio
 
 ## 3. Application: port and use case
 
-- [ ] 3.1 Write `ListPokemonUseCaseTest` (Mockito): returns the port's page for the request; propagates `CatalogUnavailableException`. Verify: red.
+- [x] 3.1 Write `ListPokemonUseCaseTest` (Mockito): returns the port's page for the request; propagates `CatalogUnavailableException`. Verify: red.
 - [ ] 3.2 Implement `ListPokemon`, `PokemonCatalogPort`, `CatalogUnavailableException` and `ListPokemonUseCase` (D2). Verify: 3.1 green; domain + application coverage ≥ 85 %.
 
 ## 4. PokeAPI adapter
