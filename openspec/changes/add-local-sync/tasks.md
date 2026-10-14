@@ -21,7 +21,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 3. Persistence
 
-- [ ] 3.1 Write `LocalPokemonPersistenceAdapterIT` (`@DataJpaTest` + Testcontainers):
+- [x] 3.1 Write `LocalPokemonPersistenceAdapterIT` (`@DataJpaTest` + Testcontainers):
   - round trip including arrays and localized names
   - update increments version
   - duplicate PokeAPI id → `DuplicateLocalPokemonException`
