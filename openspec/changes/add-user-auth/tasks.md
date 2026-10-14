@@ -71,7 +71,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 7. Auth API and access control
 
-- [ ] 7.1 Write `AuthControllerTest` (`@WebSliceTest`, mocked use cases), covering every `user-accounts` and `authentication` scenario that can be checked at the web layer:
+- [x] 7.1 Write `AuthControllerTest` (`@WebSliceTest`, mocked use cases), covering every `user-accounts` and `authentication` scenario that can be checked at the web layer:
   - 201 body without password
   - `role` member rejected
   - field errors
@@ -81,7 +81,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - `/me` with a real token → 200
   - `/me` without a token → 401 problem + `WWW-Authenticate`
   - Verify: red.
-- [ ] 7.2 Write `AccessControlTest` (`@WebSliceTest`, real tokens from the test secret):
+- [x] 7.2 Write `AccessControlTest` (`@WebSliceTest`, real tokens from the test secret):
   - anonymous `GET /api/v1/pokemon` is not rejected (404); anonymous unknown route → 404
   - anonymous `/api/v1/local-pokemon` → 401 problem + `WWW-Authenticate: Bearer`
   - USER `DELETE` → 403 problem; ADMIN `DELETE` → not rejected (404)
