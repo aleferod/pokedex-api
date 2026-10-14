@@ -31,7 +31,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 5. Integration
 
-- [ ] 5.1 Add the cache-clearing listener to `@IntegrationTest`. Write the IT additions (D5):
+- [x] 5.1 Add the cache-clearing listener to `@IntegrationTest`. Write the IT additions (D5):
   - catalog: page counts, recovery after a 503, concurrency
   - detail: name then number, unknown, blip retried
   - `LocalPokemonSyncIT`: fresh re-sync
