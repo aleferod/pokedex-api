@@ -25,8 +25,11 @@ class JwtPropertiesTest {
   }
 
   @Test
-  void should_defaultLifetimeToOneHour_when_notConfigured() {
-    assertThat(bind(STRONG, null).ttl()).isEqualTo(Duration.ofHours(1));
+  void should_defaultLifetimeToOneHourAndSkewTo30Seconds_when_notConfigured() {
+    JwtProperties properties = bind(STRONG, null);
+
+    assertThat(properties.ttl()).isEqualTo(Duration.ofHours(1));
+    assertThat(properties.clockSkew()).isEqualTo(Duration.ofSeconds(30));
   }
 
   @Test

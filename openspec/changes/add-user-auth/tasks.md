@@ -92,7 +92,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 8. End-to-end and documentation
 
-- [ ] 8.1 Write `AuthFlowIT` (`@IntegrationTest`):
+- [x] 8.1 Write `AuthFlowIT` (`@IntegrationTest`):
   - register → login → `/me` → protected route with token (not 401/403)
   - duplicate register → 409
   - `JWT_TTL`-style short lifetime → token rejected after expiry, using a context with ttl `PT1S`

@@ -6,7 +6,6 @@ import com.ballastlane.pokedex.application.port.out.user.PasswordHasherPort;
 import com.ballastlane.pokedex.application.port.out.user.TokenPort;
 import java.nio.charset.StandardCharsets;
 import java.time.Clock;
-import java.time.Duration;
 import java.util.List;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -47,14 +46,14 @@ public class CredentialsConfiguration {
     return NimbusJwtEncoder.withSecretKey(jwtSigningKey).build();
   }
 
-  /** Verifies signature (HS256 only), expiry/not-before with 30 s skew, and the issuer. */
+  /** Verifies signature (HS256 only), expiry/not-before (with the configured skew) and issuer. */
   @Bean
   JwtDecoder jwtDecoder(SecretKey jwtSigningKey, JwtProperties properties) {
     NimbusJwtDecoder decoder =
         NimbusJwtDecoder.withSecretKey(jwtSigningKey).macAlgorithm(MacAlgorithm.HS256).build();
     decoder.setJwtValidator(
         new DelegatingOAuth2TokenValidator<Jwt>(
-            new JwtTimestampValidator(Duration.ofSeconds(30)),
+            new JwtTimestampValidator(properties.clockSkew()),
             new JwtIssuerValidator(properties.issuer())));
     return decoder;
   }

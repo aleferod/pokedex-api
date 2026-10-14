@@ -57,6 +57,8 @@ app:
       secret: ${JWT_SECRET}
       ttl: ${JWT_TTL:PT1H}
       issuer: pokedex-api
+      # Tolerance for clock differences when checking exp/nbf.
+      clock-skew: PT30S
     password:
       bcrypt-strength: ${BCRYPT_STRENGTH:10}
   cors:

@@ -20,7 +20,7 @@
 ### D1. Stateless JWT, issued and verified by this service (ADR-0002)
 - **Choice:**
   - Login issues a JWT signed with HMAC-SHA256 using a secret from `JWT_SECRET` (at least 32 bytes).
-  - Spring Security's OAuth2 resource server verifies it on every request: signature, `exp`/`nbf` with 30 s clock skew, and `iss` = `pokedex-api`.
+  - Spring Security's OAuth2 resource server verifies it on every request: signature, `exp`/`nbf` with a configurable clock skew (`app.security.jwt.clock-skew`, default 30 s; 0 in `ShortLivedTokenIT`), and `iss` = `pokedex-api`.
   - Claims: `sub` (user id), `username`, `role`, `iss`, `iat`, `exp`.
 - **Rejected alternatives:**
   - **Server sessions with a cookie.** They need CSRF protection and sticky or shared session storage, and they're awkward for a separately hosted SPA.
@@ -35,7 +35,7 @@
   - `PasswordHash`: opaque and non-blank. Its `toString()` is redacted so it can never leak into logs.
   - `Role` enum: `USER`, `ADMIN`
 - **Entity:** `User` is a record with identity. **Factory:** `User.register(id, username, email, hash, now)` always assigns `Role.USER` and sets both timestamps to `now`. `User.restore(...)` rebuilds a stored user.
-- **Chain of Responsibility for passwords:** `PasswordPolicy` runs an ordered chain of `PasswordRule`s:
+- **Chain of Responsibility for passwords:** `PasswordPolicy` (package `domain.user.password`, which depends on nothing else in `domain.user`, so there is no package cycle) runs an ordered chain of `PasswordRule`s:
   - `LengthRule(8, 72)`. 72 is BCrypt's input limit.
   - `UpperCaseRule`, `LowerCaseRule`, `DigitRule`, `SpecialCharacterRule`
   - Each rule returns an optional violation. The policy collects every violation rather than stopping at the first, so the client sees all problems at once. A non-empty result becomes `WeakPasswordException(List<String>)`.
