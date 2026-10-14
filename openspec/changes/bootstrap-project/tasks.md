@@ -127,16 +127,16 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - `curl -s localhost:8080/actuator/health` returns `{"status":"UP"}`
   - after `docker compose down` and `up -d`, `flyway_schema_history` still holds V1
   - `docker compose down -v` cleans up
-- [ ] 8.3 Add the Quick Start, the verify-in-docker usage (including the macOS/Windows note) and seeded-data placeholders to the README. Verify: every command in the Quick Start runs as written from a clean clone.
+- [x] 8.3 Add the Quick Start, the verify-in-docker usage (including the macOS/Windows note) and seeded-data placeholders to the README. Verify: every command in the Quick Start runs as written from a clean clone.
 
 ## 9. Continuous integration (build-governance: CI)
 
 - [x] 9.1 Write `.github/workflows/ci.yml` with jobs `build` (verify + JaCoCo artifact + coverage in the job summary), `openspec`, `docker` and `secrets` (design D14). Verify: the workflow passes `actionlint` (run via the `rhysd/actionlint` container).
-- [ ] 9.2 Add the CI status badge and the coverage-artifact note to the README. Verify: the badge URL points at `aleferod/pokedex-api` `ci.yml` on `main`.
+- [x] 9.2 Add the CI status badge and the coverage-artifact note to the README. Verify: the badge URL points at `aleferod/pokedex-api` `ci.yml` on `main`.
 
 ## 10. README skeleton
 
-- [ ] 10.1 Write the README sections that are known so far:
+- [x] 10.1 Write the README sections that are known so far:
   - overview and user-story map (endpoints marked "planned")
   - Mermaid architecture diagram and layer/package explanation
   - patterns table
