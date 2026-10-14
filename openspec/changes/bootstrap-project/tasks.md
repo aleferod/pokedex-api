@@ -42,7 +42,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - MDC holds the id during the chain and is cleared afterwards
   - header set even when the chain throws
   - Verify: red against a pass-through stub.
-- [ ] 3.2 Implement `CorrelationIdFilter` (design D6) and register it at highest precedence. Verify: 3.1 is green.
+- [x] 3.2 Implement `CorrelationIdFilter` (design D6) and register it at highest precedence. Verify: 3.1 is green.
 - [ ] 3.3 Write `CorrelationIdLoggingTest` (`@WebMvcTest` + `OutputCaptureExtension`):
   - a log line written during the request contains the id
   - a rejected id never appears in the output
