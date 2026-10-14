@@ -12,7 +12,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - `importFrom` defaults
   - `resyncWith` keeps proprietary data and creation audit
   - Verify: red against stubs.
-- [ ] 1.2 Implement the value objects, `UpstreamData` (with `from(PokemonDetail)`), `AuditInfo`, the `LocalPokemon` aggregate and its exceptions. Add `spriteUrl` to `PokemonDetail`, filled by `PokeApiDetailMapper` (a test asserts it). Verify: 1.1 green; ArchUnit and existing tests green.
+- [x] 1.2 Implement the value objects, `UpstreamData` (with `from(PokemonDetail)`), `AuditInfo`, the `LocalPokemon` aggregate and its exceptions. Add `spriteUrl` to `PokemonDetail`, filled by `PokeApiDetailMapper` (a test asserts it). Verify: 1.1 green; ArchUnit and existing tests green.
 
 ## 2. Application
 
