@@ -1,6 +1,5 @@
 package com.ballastlane.pokedex.domain.user.password;
 
-import com.ballastlane.pokedex.domain.user.PasswordRule;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 

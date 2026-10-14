@@ -1,6 +1,5 @@
 package com.ballastlane.pokedex.domain.user.password;
 
-import com.ballastlane.pokedex.domain.user.PasswordRule;
 import java.util.Optional;
 import java.util.function.IntPredicate;
 

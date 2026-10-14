@@ -1,7 +1,5 @@
-package com.ballastlane.pokedex.domain.user;
+package com.ballastlane.pokedex.domain.user.password;
 
-import com.ballastlane.pokedex.domain.user.password.CharacterClassRule;
-import com.ballastlane.pokedex.domain.user.password.LengthRule;
 import java.util.List;
 import java.util.Optional;
 

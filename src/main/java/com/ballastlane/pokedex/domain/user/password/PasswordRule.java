@@ -1,4 +1,4 @@
-package com.ballastlane.pokedex.domain.user;
+package com.ballastlane.pokedex.domain.user.password;
 
 import java.util.Optional;
 
