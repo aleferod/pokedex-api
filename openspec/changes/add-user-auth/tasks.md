@@ -67,7 +67,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - two invalid fields → two entries
   - probe-thrown `InvalidFieldException` / `WeakPasswordException` / `DuplicateUserException` / `InvalidCredentialsException` → 400/400/409/401 with the expected entries and detail
   - Verify: red.
-- [ ] 6.2 Implement the `GlobalExceptionHandler` overrides and domain handlers (D7). Verify: 6.1 green; existing error tests still green.
+- [x] 6.2 Implement the `GlobalExceptionHandler` overrides and domain handlers (D7). Verify: 6.1 green; existing error tests still green.
 
 ## 7. Auth API and access control
 
