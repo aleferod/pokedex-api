@@ -16,7 +16,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 2. Architecture governance (build-governance: layer and coding rules)
 
-- [ ] 2.1 Write `ArchitectureRulesSelfTest` and the fixture packages under `src/test/java/.../archfixtures/`, one deliberately broken fixture per rule:
+- [x] 2.1 Write `ArchitectureRulesSelfTest` and the fixture packages under `src/test/java/.../archfixtures/`, one deliberately broken fixture per rule:
   - domain → Spring
   - domain → JPA
   - domain → Jackson
