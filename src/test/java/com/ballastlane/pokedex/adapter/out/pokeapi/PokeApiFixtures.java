@@ -7,13 +7,13 @@ import java.nio.charset.StandardCharsets;
 import tools.jackson.databind.json.JsonMapper;
 
 /** Loads the trimmed, real PokeAPI captures from {@code src/test/resources/pokeapi}. */
-final class PokeApiFixtures {
+public final class PokeApiFixtures {
 
   private static final JsonMapper JSON = JsonMapper.builder().build();
 
   private PokeApiFixtures() {}
 
-  static String json(String name) {
+  public static String json(String name) {
     try (InputStream in = PokeApiFixtures.class.getResourceAsStream("/pokeapi/" + name)) {
       if (in == null) {
         throw new IllegalArgumentException("No fixture " + name);
@@ -24,7 +24,7 @@ final class PokeApiFixtures {
     }
   }
 
-  static <T> T read(String name, Class<T> type) {
+  public static <T> T read(String name, Class<T> type) {
     return JSON.readValue(json(name), type);
   }
 }
