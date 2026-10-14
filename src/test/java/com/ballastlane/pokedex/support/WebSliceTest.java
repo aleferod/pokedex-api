@@ -2,6 +2,7 @@ package com.ballastlane.pokedex.support;
 
 import com.ballastlane.pokedex.adapter.in.web.error.ProblemDetailFactory;
 import com.ballastlane.pokedex.adapter.in.web.error.ProblemDetailWriter;
+import com.ballastlane.pokedex.infrastructure.security.SecurityConfiguration;
 import com.ballastlane.pokedex.infrastructure.time.TimeConfiguration;
 import com.ballastlane.pokedex.infrastructure.web.CrossOriginConfiguration;
 import com.ballastlane.pokedex.infrastructure.web.WebFilterConfiguration;
@@ -30,6 +31,7 @@ import org.springframework.test.context.ActiveProfiles;
   CrossOriginConfiguration.class,
   ProblemDetailFactory.class,
   ProblemDetailWriter.class,
+  SecurityConfiguration.class,
   TimeConfiguration.class
 })
 public @interface WebSliceTest {

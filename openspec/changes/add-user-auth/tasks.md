@@ -4,7 +4,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 1. Dependencies and configuration
 
-- [ ] 1.1 Add `spring-boot-starter-security-oauth2-resource-server`, MapStruct 1.6.3 (with its processor on the compiler path), and the test starters `spring-boot-starter-security-test` and `spring-boot-starter-data-jpa-test`. Verify: `./scripts/verify-in-docker.sh` stays green, with 0 compiler warnings.
+- [x] 1.1 Add `spring-boot-starter-security-oauth2-resource-server`, MapStruct 1.6.3 (with its processor on the compiler path), and the test starters `spring-boot-starter-security-test` and `spring-boot-starter-data-jpa-test`. Because Boot locks every endpoint as soon as Spring Security is on the classpath, also add a stateless, permit-all `SecurityConfiguration` placeholder that keeps today's behaviour, and import it into `@WebSliceTest`. Group 7 tightens it test-first. Verify: `./scripts/verify-in-docker.sh` stays green, with 0 compiler warnings.
 - [ ] 1.2 Add `app.security.*` defaults to `application.yml` (D9), a fixed test secret and BCrypt strength 4 to `application-test.yml`, `JWT_SECRET` and `JWT_TTL` to `.env.example` and `docker-compose.yml`, and `spring.jackson.deserialization.fail-on-unknown-properties: true`. Verify: `docker compose config` resolves `JWT_SECRET` from `.env`.
 
 ## 2. Domain: users and password policy
