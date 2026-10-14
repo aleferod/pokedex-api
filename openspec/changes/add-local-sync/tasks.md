@@ -31,7 +31,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 4. Web
 
-- [ ] 4.1 Write `LocalPokemonControllerTest` (web slice, mocked use cases, real tokens):
+- [x] 4.1 Write `LocalPokemonControllerTest` (web slice, mocked use cases, real tokens):
   - 201 with `Location` and `ETag`; 200 re-sync
   - 404, 503
   - 400 for `idOrName`, `id` and `limit`
