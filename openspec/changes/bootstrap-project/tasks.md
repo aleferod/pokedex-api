@@ -61,7 +61,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - Verify: red.
 - [x] 4.2 Implement `ProblemDetailFactory`, `GlobalExceptionHandler` and the `app.problems.base-uri` property, and set `spring.web.resources.add-mappings=false` (design D5). Verify: 4.1 is green.
 - [x] 4.3 Write `ProblemDetailErrorControllerTest`: a request forwarded to `/error` with a servlet error status (simulating a container-level rejection) returns problem+json with that status and no trace. Verify: red, then implement `ProblemDetailErrorController` and set `server.error.include-*=never`. Verify: green.
-- [ ] 4.4 Write `docs/problems.md` with one anchored section per problem type in use (`not-found`, `method-not-allowed`, `bad-request`, `internal-error`). Verify: every `type` slug the factory emits has a matching anchor, checked by `ProblemTypesDocumentedTest`, which parses the markdown.
+- [x] 4.4 Write `docs/problems.md` with one anchored section per problem type in use (`not-found`, `method-not-allowed`, `bad-request`, `internal-error`). Verify: every `type` slug the factory emits has a matching anchor, checked by `ProblemTypesDocumentedTest`, which parses the markdown.
 
 ## 5. Cross-origin access (cross-origin-access)
 
