@@ -30,7 +30,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 ## 4. Adapter
 
 - [x] 4.1 Write `FlavorTextTest` and `EvolutionConditionsTest` (D4, D5). Verify: red.
-- [ ] 4.2 Implement `FlavorText`, `EvolutionConditionStrategy` and its implementations, and the `EvolutionConditions` registry. Verify: 4.1 green.
+- [x] 4.2 Implement `FlavorText`, `EvolutionConditionStrategy` and its implementations, and the `EvolutionConditions` registry. Verify: 4.1 green.
 - [ ] 4.3 Write `PokeApiDetailMapperTest` on the captures:
   - Bulbasaur fields and its `Level 16` → `Level 32` chain
   - Eevee's 8 branches and the conditions in the spec
