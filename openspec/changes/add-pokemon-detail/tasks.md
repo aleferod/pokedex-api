@@ -57,7 +57,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 6. End-to-end and docs
 
-- [ ] 6.1 Write `PokemonDetailIT` (WireMock as PokeAPI): Eevee end to end with 8 branches and conditions; `PIKACHU` resolves to id 25; unknown → 404. Verify: green, with full `verify`.
+- [x] 6.1 Write `PokemonDetailIT` (WireMock as PokeAPI): Eevee end to end with 8 branches and conditions; `PIKACHU` resolves to id 25; unknown → 404. Verify: green, with full `verify`.
 - [ ] 6.2 Update the README (US02 row ✅, a detail section with a sample response and the evolution-condition strategy, Strategy pattern row) and `docs/problems.md` (`not-found` mentions unknown Pokémon). Verify: lychee offline shows no broken links.
 
 ## 7. Integration verification
