@@ -3,9 +3,12 @@ package com.ballastlane.pokedex.adapter.out.persistence.localpokemon;
 import com.ballastlane.pokedex.application.port.out.localpokemon.LocalPokemonRepositoryPort;
 import com.ballastlane.pokedex.domain.localpokemon.DuplicateLocalPokemonException;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemon;
+import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonFilter;
 import com.ballastlane.pokedex.domain.localpokemon.LocalPokemonId;
 import com.ballastlane.pokedex.domain.localpokemon.StaleLocalPokemonException;
 import com.ballastlane.pokedex.domain.pokemon.PokemonId;
+import com.ballastlane.pokedex.domain.shared.Page;
+import com.ballastlane.pokedex.domain.shared.PageRequest;
 import java.util.Locale;
 import java.util.Optional;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -54,5 +57,20 @@ public class LocalPokemonPersistenceAdapter implements LocalPokemonRepositoryPor
       }
       throw violation;
     }
+  }
+
+  @Override
+  public boolean existsByPokeapiId(PokemonId pokeapiId) {
+    throw new UnsupportedOperationException("not implemented yet");
+  }
+
+  @Override
+  public Page<LocalPokemon> findAll(LocalPokemonFilter filter, PageRequest page) {
+    throw new UnsupportedOperationException("not implemented yet");
+  }
+
+  @Override
+  public void delete(LocalPokemon pokemon) {
+    throw new UnsupportedOperationException("not implemented yet");
   }
 }
