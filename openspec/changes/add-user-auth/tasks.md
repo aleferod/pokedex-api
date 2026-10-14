@@ -9,7 +9,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 2. Domain: users and password policy
 
-- [ ] 2.1 Write `UsernameTest`, `EmailAddressTest`, `UserIdTest`, `PasswordHashTest` and `UserTest`:
+- [x] 2.1 Write `UsernameTest`, `EmailAddressTest`, `UserIdTest`, `PasswordHashTest` and `UserTest`:
   - trimming and lower-casing
   - length and character rules
   - `InvalidFieldException` naming the field
