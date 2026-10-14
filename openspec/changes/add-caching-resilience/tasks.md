@@ -9,7 +9,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 2. Cache decorator
 
-- [ ] 2.1 Add `spring-boot-starter-cache` and Caffeine. Write `CachingPokemonCatalogTest` (D1, D2), covering:
+- [x] 2.1 Add `spring-boot-starter-cache` and Caffeine. Write `CachingPokemonCatalogTest` (D1, D2), covering:
   - page hit
   - expiry with a fake ticker
   - unknown detail cached
@@ -17,7 +17,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
   - number and name keys
   - fresh read bypasses the cache and writes through
   - Verify: red.
-- [ ] 2.2 Implement `CachingPokemonCatalog`. Verify: 2.1 green; ArchUnit green.
+- [x] 2.2 Implement `CachingPokemonCatalog`. Verify: 2.1 green; ArchUnit green.
 
 ## 3. Resilience
 
