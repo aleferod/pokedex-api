@@ -4,15 +4,15 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
 
 ## 1. Project scaffolding
 
-- [ ] 1.1 Generate the Maven Wrapper (Maven 3.9.x) and `pom.xml`:
+- [x] 1.1 Generate the Maven Wrapper (Maven 3.9.x) and `pom.xml`:
   - Spring Boot 4.1.x parent, Java 21
   - starters: webmvc, validation, data-jpa, actuator, flyway
   - runtime: `flyway-database-postgresql`, `postgresql`, springdoc-openapi 3.x
   - test: spring-boot-starter-test, ArchUnit, Testcontainers PostgreSQL
   - Verify: `./mvnw -v` inside `maven:3.9-eclipse-temurin-21` shows Maven 3.9 and Java 21.
-- [ ] 1.2 Create `PokedexApplication` and the package skeleton (`domain`, `application.port.in`, `application.port.out`, `application.usecase`, `adapter.in.web`, `adapter.out.pokeapi`, `adapter.out.persistence`, `infrastructure`), each with a `package-info.java` that describes the layer's responsibility. Verify: `./mvnw -B compile` succeeds.
-- [ ] 1.3 Add `scripts/verify-in-docker.sh` (design D13). Verify: it runs `./mvnw verify` green on the skeleton, and `find . -user root` in the working tree returns nothing.
-- [ ] 1.4 Write ADR-0005 (OpenSpec) and ADR-0006 (Spring Boot 4.1 over 3.5) in `docs/adr/`. Verify: both follow the ADR template (Context, Decision, Consequences) and are linked from `docs/adr/README.md`.
+- [x] 1.2 Create `PokedexApplication` and the package skeleton (`domain`, `application.port.in`, `application.port.out`, `application.usecase`, `adapter.in.web`, `adapter.out.pokeapi`, `adapter.out.persistence`, `infrastructure`), each with a `package-info.java` that describes the layer's responsibility. Verify: `./mvnw -B compile` succeeds.
+- [x] 1.3 Add `scripts/verify-in-docker.sh` (design D13). Verify: it runs `./mvnw verify` green on the skeleton, and `find . -user root` in the working tree returns nothing.
+- [x] 1.4 Write ADR-0005 (OpenSpec) and ADR-0006 (Spring Boot 4.1 over 3.5) in `docs/adr/`. Verify: both follow the ADR template (Context, Decision, Consequences) and are linked from `docs/adr/README.md`.
 
 ## 2. Architecture governance (build-governance: layer and coding rules)
 
