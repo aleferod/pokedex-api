@@ -49,7 +49,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
   - a direct duplicate insert (bypassing the existence checks) → `DuplicateUserException` with the right field
   - the stored hash is not the raw password
   - Verify: red.
-- [ ] 4.2 Implement `V2__create_users.sql`, `UserJpaEntity`, `SpringDataUserRepository`, `UserPersistenceMapper` (MapStruct) and `UserPersistenceAdapter` (D4). Verify: 4.1 green; `SchemaMigrationIT` now sees V1 and V2; Hibernate `validate` passes.
+- [x] 4.2 Implement `V2__create_users.sql`, `UserJpaEntity`, `SpringDataUserRepository`, `UserPersistenceMapper` (MapStruct) and `UserPersistenceAdapter` (D4). Verify: 4.1 green; `SchemaMigrationIT` now sees V1 and V2; Hibernate `validate` passes.
 
 ## 5. Security adapters
 
