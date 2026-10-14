@@ -1,14 +1,18 @@
 package com.ballastlane.pokedex.infrastructure.config;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.ballastlane.pokedex.PokedexApplication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.jdbc.autoconfigure.DataSourceProperties;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.test.context.ConfigDataApplicationContextInitializer;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.StandardEnvironment;
 
 /**
@@ -32,10 +36,14 @@ class ProfileConfigurationTest {
   void should_useLocalProfile_when_noProfileIsActive() {
     runner.run(
         context -> {
-          assertThat(context.getEnvironment().getActiveProfiles()).isEmpty();
-          assertThat(context.getEnvironment().getDefaultProfiles()).containsExactly("local");
-          assertThat(context.getEnvironment().getProperty("spring.datasource.url"))
-              .isEqualTo("jdbc:postgresql://localhost:5432/pokedex");
+          ConfigurableEnvironment environment = context.getEnvironment();
+          assertThat(environment.getActiveProfiles()).isEmpty();
+          assertThat(environment.getDefaultProfiles()).containsExactly("local");
+          // Value may come from a developer's .env (imported by the local profile), so only the
+          // driver is asserted here; the docker test pins the exact default URL.
+          assertThat(environment.getProperty("spring.datasource.url")).startsWith("jdbc:postgresql://");
+          assertThat(environment.getPropertySources().stream().map(PropertySource::getName))
+              .anySatisfy(name -> assertThat(name).contains("application-local.yml"));
         });
   }
 
@@ -52,15 +60,24 @@ class ProfileConfigurationTest {
   }
 
   @Test
-  void should_failNamingTheVariable_when_dockerProfileLacksDbPassword() {
-    runner
-        .withUserConfiguration(DataSourcePropertiesOnly.class)
-        .withPropertyValues("spring.profiles.active=docker")
-        .run(
-            context -> {
-              assertThat(context).hasFailed();
-              assertThat(context.getStartupFailure()).rootCause().hasMessageContaining("DB_PASSWORD");
-            });
+  void should_failStartupNamingTheVariable_when_dockerProfileLacksDbPassword() {
+    // Given an environment without host variables (so no DB_PASSWORD) and the docker profile
+    StandardEnvironment environment = new StandardEnvironment();
+    environment
+        .getPropertySources()
+        .remove(StandardEnvironment.SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME);
+    SpringApplicationBuilder application =
+        new SpringApplicationBuilder(PokedexApplication.class)
+            .environment(environment)
+            .web(WebApplicationType.NONE)
+            .profiles("docker")
+            .logStartupInfo(false);
+
+    // When / Then: fails while preparing the environment, before any bean or database is touched
+    assertThatThrownBy(application::run)
+        .isInstanceOf(IllegalStateException.class)
+        .hasMessageContaining("DB_PASSWORD")
+        .hasMessageContaining(".env.example");
   }
 
   @ParameterizedTest
@@ -73,7 +90,4 @@ class ProfileConfigurationTest {
                 assertThat(context.getEnvironment().getProperty("spring.jpa.hibernate.ddl-auto"))
                     .isEqualTo("validate"));
   }
-
-  @EnableConfigurationProperties(DataSourceProperties.class)
-  static class DataSourcePropertiesOnly {}
 }

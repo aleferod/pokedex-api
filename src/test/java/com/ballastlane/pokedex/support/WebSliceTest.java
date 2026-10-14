@@ -13,15 +13,18 @@ import java.lang.annotation.Target;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * {@code @WebMvcTest} plus the application's cross-cutting web components (filters, error
- * handling, clock), so every web slice test runs the same request pipeline as production.
+ * handling, CORS, clock), so every web slice test runs the same request pipeline as production, under
+ * the {@code test} profile.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @WebMvcTest
+@ActiveProfiles("test")
 @Import({
   WebFilterConfiguration.class,
   CrossOriginConfiguration.class,

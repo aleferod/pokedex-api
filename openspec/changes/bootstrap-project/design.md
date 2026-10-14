@@ -85,7 +85,10 @@ Constraints:
   - `docker`: DB host `postgres`
   - `test`: datasource supplied by `@ServiceConnection`
 - **Default profile:** `spring.profiles.default=local`.
-- **No secret defaults:** `DB_PASSWORD` has no default anywhere. A missing value fails placeholder resolution and names the variable.
+- **No secret defaults:** `DB_PASSWORD` has no default anywhere.
+  - *Refined during implementation:* Boot's binder ignores unresolvable placeholders. It would keep the literal `${DB_PASSWORD}` as the password, and the failure would show up later as a misleading Postgres authentication error.
+  - So `infrastructure.config.RequiredSettingsEnvironmentPostProcessor` (registered in `META-INF/spring.factories`) resolves the required keys right after config data is loaded. It fails with `Could not resolve placeholder 'DB_PASSWORD'… see .env.example` before any bean exists.
+  - The `test` profile is exempt because Testcontainers supplies the connection. Every Spring test runs under `test`.
 - **JPA settings:**
   - `spring.jpa.hibernate.ddl-auto=validate` in every profile
   - `spring.jpa.open-in-view=false`, so lazy loading can't leak into the web layer

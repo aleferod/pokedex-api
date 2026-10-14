@@ -100,7 +100,7 @@ TDD convention: in each group, the `test:` commit lands red first. It compiles a
   - `docker` profile without `DB_PASSWORD` fails, naming `DB_PASSWORD`
   - `ddl-auto=validate` resolved for `local`, `docker` and `test`
   - Verify: red.
-- [ ] 6.5 Implement:
+- [x] 6.5 Implement:
   - `application.yml` and the `local`, `docker` and `test` profile files (design D8)
   - `V1__baseline.sql` (design D9)
   - actuator exposure and probes
