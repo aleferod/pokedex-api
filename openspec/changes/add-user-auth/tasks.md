@@ -59,7 +59,7 @@ TDD convention as in bootstrap-project: each `test:` commit is red on assertions
 
 ## 6. Field-level errors and domain-exception mapping
 
-- [ ] 6.1 Extend `GlobalExceptionHandlerTest` with a probe controller taking a validated JSON body:
+- [x] 6.1 Write `InputAndDomainErrorsTest` (a web slice next to `GlobalExceptionHandlerTest`) with a probe controller taking a validated JSON body:
   - missing field → `errors[field]`
   - unknown member → `errors[role]`
   - wrong type → `errors[field]`
