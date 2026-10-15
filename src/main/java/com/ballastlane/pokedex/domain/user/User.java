@@ -32,6 +32,17 @@ public record User(
     return new User(id, username, email, passwordHash, Role.USER, now, now);
   }
 
+  /** An account an operator creates with a chosen role (stub). */
+  public static User provision(
+      UserId id,
+      Username username,
+      EmailAddress email,
+      PasswordHash passwordHash,
+      Role role,
+      Instant now) {
+    return register(id, username, email, passwordHash, now);
+  }
+
   /** An account as it was stored. */
   public static User restore(
       UserId id,
