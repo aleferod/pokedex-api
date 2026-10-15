@@ -4,7 +4,7 @@ TDD: each `test:` commit is red on assertions against stubs, and the `feat:` com
 
 ## 1. Domain
 
-- [ ] 1.1 Write `PokemonNameQueryTest` (D1). Verify: red against a stub.
+- [x] 1.1 Write `PokemonNameQueryTest` (D1). Verify: red against a stub.
 - [ ] 1.2 Implement `PokemonNameQuery` and `CatalogName`. Verify: 1.1 green.
 
 ## 2. Use case
