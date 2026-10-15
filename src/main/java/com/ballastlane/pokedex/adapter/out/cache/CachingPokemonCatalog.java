@@ -30,6 +30,8 @@ public class CachingPokemonCatalog implements PokemonCatalogPort {
   public static final String DETAILS = "pokemon-details";
   public static final String NAMES = "pokemon-names";
 
+  private static final String ALL_NAMES = "all";
+
   private final PokemonCatalogPort delegate;
   private final Cache pages;
   private final Cache details;
@@ -95,13 +97,15 @@ public class CachingPokemonCatalog implements PokemonCatalogPort {
     }
   }
 
+  /** The whole index under one key: a search filters it in memory. */
   @Override
   public List<CatalogName> findAllNames() {
-    throw new UnsupportedOperationException("not yet");
+    return load(names, ALL_NAMES, delegate::findAllNames);
   }
 
+  /** Keyed by the numbers asked for: the same search page asks for the same numbers. */
   @Override
   public List<PokemonSummary> findSummaries(List<PokemonId> ids) {
-    throw new UnsupportedOperationException("not yet");
+    return load(pages, List.copyOf(ids), () -> delegate.findSummaries(ids));
   }
 }
