@@ -23,8 +23,8 @@
 
 ## 4. Verification
 
-- [ ] 4.1 Run the Pokédex `./scripts/verify-in-docker.sh` (unaffected) and the sample's `verify`. Verify: both exit 0.
-- [ ] 4.2 Run `openspec validate add-genai-task-api-doc --strict` and gitleaks. Verify: valid, no leaks.
+- [x] 4.1 Run the Pokédex `./scripts/verify-in-docker.sh` (unaffected) and the sample's `verify`. Verify: both exit 0.
+- [x] 4.2 Run `openspec validate add-genai-task-api-doc --strict` and gitleaks. Verify: valid, no leaks.
 
 ## Workflow follow-up
 
