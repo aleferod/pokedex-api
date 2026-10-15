@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -153,6 +154,119 @@ class TaskControllerTest {
 
     mvc.perform(get("/api/v1/tasks/" + ID).with(jwt().jwt(token -> token.subject("ghost"))))
         .andExpect(status().isUnauthorized());
+  }
+
+  // ---- added during review (docs/GENAI.md, section 3) ---------------------------------------
+
+  @Test
+  void missingTokenAnswersWithABearerChallengeAndAProblem() throws Exception {
+    mvc.perform(get("/api/v1/tasks"))
+        .andExpect(status().isUnauthorized())
+        .andExpect(header().string("WWW-Authenticate", org.hamcrest.Matchers.startsWith("Bearer")))
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON))
+        .andExpect(jsonPath("$.status").value(401))
+        .andExpect(jsonPath("$.instance").value("/api/v1/tasks"));
+  }
+
+  @Test
+  void invalidTokenReturns401WithInvalidTokenChallenge() throws Exception {
+    mvc.perform(get("/api/v1/tasks").header("Authorization", "Bearer not-a-jwt"))
+        .andExpect(status().isUnauthorized())
+        .andExpect(
+            header().string("WWW-Authenticate", org.hamcrest.Matchers.containsString("invalid_token")));
+  }
+
+  @Test
+  void unknownUserAnswersWithABearerChallenge() throws Exception {
+    given(service.get("ghost", ID)).willThrow(new UnknownUserException("ghost"));
+
+    mvc.perform(get("/api/v1/tasks/" + ID).with(jwt().jwt(token -> token.subject("ghost"))))
+        .andExpect(status().isUnauthorized())
+        .andExpect(header().string("WWW-Authenticate", org.hamcrest.Matchers.startsWith("Bearer")));
+  }
+
+  @Test
+  void unexpectedErrorReturns500ProblemWithoutInternals() throws Exception {
+    given(service.get("alice", ID))
+        .willThrow(new IllegalStateException("connection to db-prod:5432 refused"));
+
+    mvc.perform(get("/api/v1/tasks/" + ID).with(jwt().jwt(token -> token.subject("alice"))))
+        .andExpect(status().isInternalServerError())
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON))
+        .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("db-prod"))))
+        .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("IllegalStateException"))));
+  }
+
+  @Test
+  void titleOf120CharactersAfterTrimmingIsAccepted() throws Exception {
+    given(service.create(eq("alice"), any())).willReturn(task());
+    String title = "  " + "a".repeat(120) + "  ";
+
+    mvc.perform(
+            post("/api/v1/tasks")
+                .with(jwt().jwt(token -> token.subject("alice")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":\"" + title + "\"}"))
+        .andExpect(status().isCreated());
+  }
+
+  @Test
+  void titleOf121CharactersAfterTrimmingIsRejected() throws Exception {
+    mvc.perform(
+            post("/api/v1/tasks")
+                .with(jwt().jwt(token -> token.subject("alice")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":\"" + "a".repeat(121) + "\"}"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errors[0].field").value("title"));
+  }
+
+  @Test
+  void tooLongDescriptionReturns400() throws Exception {
+    mvc.perform(
+            post("/api/v1/tasks")
+                .with(jwt().jwt(token -> token.subject("alice")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":\"x\",\"description\":\"" + "d".repeat(2001) + "\"}"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errors[0].field").value("description"));
+  }
+
+  @Test
+  void malformedDueDateReturns400NamingTheField() throws Exception {
+    mvc.perform(
+            post("/api/v1/tasks")
+                .with(jwt().jwt(token -> token.subject("alice")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":\"x\",\"dueDate\":\"2026-02-30\"}"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errors[0].field").value("dueDate"));
+  }
+
+  @Test
+  void malformedJsonReturns400Problem() throws Exception {
+    mvc.perform(
+            post("/api/v1/tasks")
+                .with(jwt().jwt(token -> token.subject("alice")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":"))
+        .andExpect(status().isBadRequest())
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON));
+  }
+
+  @Test
+  void negativePageReturns400NamingIt() throws Exception {
+    mvc.perform(get("/api/v1/tasks?page=-1").with(jwt().jwt(token -> token.subject("alice"))))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errors[0].field").value("page"));
+  }
+
+  @Test
+  void unknownStatusFilterReturns400NamingIt() throws Exception {
+    mvc.perform(
+            get("/api/v1/tasks?status=WAITING").with(jwt().jwt(token -> token.subject("alice"))))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errors[0].field").value("status"));
   }
 
   private static TaskEntity task() {
