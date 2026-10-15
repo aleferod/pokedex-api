@@ -9,7 +9,7 @@
 
 - [x] 2.1 Build the sample and run its generated tests in Docker (D4 steps 1–2). Record the results.
 - [x] 2.2 Review against the prompt's checklist and add the edge-case tests it calls for (D4 steps 3–4). Verify: each test that exposes a defect is red.
-- [ ] 2.3 Fix each defect in its own commit (D4 step 5). Verify: every sample test is green with `./scripts/mvnw-in-docker.sh -f docs/genai-sample/pom.xml verify`.
+- [x] 2.3 Fix each defect in its own commit (D4 step 5). Verify: every sample test is green with `./scripts/mvnw-in-docker.sh -f docs/genai-sample/pom.xml verify`.
 
 ## 3. Write-up and CI
 

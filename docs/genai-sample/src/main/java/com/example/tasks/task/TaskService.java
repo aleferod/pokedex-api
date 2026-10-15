@@ -2,6 +2,7 @@ package com.example.tasks.task;
 
 import com.example.tasks.persistence.TaskEntity;
 import com.example.tasks.persistence.TaskRepository;
+import com.example.tasks.persistence.TaskSpecifications;
 import com.example.tasks.persistence.UserEntity;
 import com.example.tasks.persistence.UserRepository;
 import java.time.Clock;
@@ -54,7 +55,9 @@ public class TaskService {
   public Page<TaskEntity> list(
       String username, TaskStatus status, LocalDate dueBefore, int page, int size) {
     UserEntity owner = user(username);
-    return tasks.search(owner.getId(), status, dueBefore, PageRequest.of(page, size, ORDER));
+    return tasks.findAll(
+        TaskSpecifications.matching(owner.getId(), status, dueBefore),
+        PageRequest.of(page, size, ORDER));
   }
 
   @Transactional(readOnly = true)
