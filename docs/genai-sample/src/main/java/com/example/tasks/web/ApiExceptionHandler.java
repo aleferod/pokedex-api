@@ -4,8 +4,11 @@ import com.example.tasks.task.InvalidDueDateException;
 import com.example.tasks.task.StaleTaskException;
 import com.example.tasks.task.TaskNotFoundException;
 import com.example.tasks.task.UnknownUserException;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,6 +28,8 @@ import tools.jackson.databind.exc.UnrecognizedPropertyException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+  private static final Logger LOG = LoggerFactory.getLogger(ApiExceptionHandler.class);
 
   @ExceptionHandler(TaskNotFoundException.class)
   ProblemDetail notFound(TaskNotFoundException e) {
@@ -56,6 +61,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     return withErrors(
         ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Invalid parameter"),
         List.of(error(e.getName(), "has an invalid value")));
+  }
+
+  /** Anything unexpected: logged with its stack trace, answered without internals. */
+  @ExceptionHandler(Exception.class)
+  ProblemDetail unexpected(Exception e, HttpServletRequest request) {
+    LOG.error("Unexpected error on {} {}", request.getMethod(), request.getRequestURI(), e);
+    return ProblemDetail.forStatusAndDetail(
+        HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.");
   }
 
   @Override
