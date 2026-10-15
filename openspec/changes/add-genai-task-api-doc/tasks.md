@@ -2,7 +2,7 @@
 
 ## 1. Prompt and raw output
 
-- [ ] 1.1 Write the prompt as the first section of `docs/GENAI.md` (D3) and commit it on its own. Verify: committed before any sample code.
+- [x] 1.1 Write the prompt as the first section of `docs/GENAI.md` (D3) and commit it on its own. Verify: committed before any sample code.
 - [ ] 1.2 Generate the sample from the prompt alone, in one pass, and commit it **unmodified** under `docs/genai-sample/` (D2). Verify: the commit holds only the raw output.
 
 ## 2. Validation and corrections
