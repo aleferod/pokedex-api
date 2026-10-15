@@ -24,7 +24,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 4. Integration verification
 
-- [ ] 4.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
+- [x] 4.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
 - [ ] 4.2 From a fresh clone with `docker compose up --build` against the real PokeAPI:
   - `admin` deletes a seeded record (204)
   - `trainer` lists `?tag=starter`
