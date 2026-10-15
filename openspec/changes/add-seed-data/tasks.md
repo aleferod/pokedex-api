@@ -9,8 +9,8 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 2. Seeder
 
-- [ ] 2.1 Write `DemoDataSeederTest`, `DemoDataFileTest` and `DemoDataConfigurationTest` (D3, D4, D5). Verify: red.
-- [ ] 2.2 Implement `DemoData` and its reader, `DemoDataSeeder`, `SeedProperties`, `DemoDataConfiguration`, and `seed/demo-data.json` with the names captured from PokeAPI. Add `SEED_DEMO_DATA` to `application.yml`, Compose and `.env.example`. Verify: 2.1 green; ArchUnit green.
+- [x] 2.1 Write `DemoDataSeederTest`, `DemoDataFileTest` and `DemoDataConfigurationTest` (D3, D4, D5). Verify: red.
+- [x] 2.2 Implement `DemoData` and its reader, `DemoDataSeeder`, `SeedProperties`, `DemoDataConfiguration`, and `seed/demo-data.json` with the names captured from PokeAPI. Add `SEED_DEMO_DATA` to `application.yml`, Compose and `.env.example`. Verify: 2.1 green; ArchUnit green.
 
 ## 3. Integration
 
