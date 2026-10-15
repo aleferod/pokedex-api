@@ -14,7 +14,7 @@ TDD: each `test:` commit is red on assertions against stubs, and the `feat:` com
 
 ## 3. Adapters
 
-- [ ] 3.1 Capture the full name list as a fixture. Write the adapter tests (`findAllNames`, `findSummaries`) and the caching tests (D3, D4). Verify: red.
+- [x] 3.1 Capture the full name list as a fixture. Write the adapter tests (`findAllNames`, `findSummaries`) and the caching tests (D3, D4). Verify: red.
 - [ ] 3.2 Implement both in `PokeApiCatalogAdapter` and `CachingPokemonCatalog`, with the `pokemon-names` cache in `CatalogCacheConfiguration`. Verify: 3.1 green.
 
 ## 4. Endpoint

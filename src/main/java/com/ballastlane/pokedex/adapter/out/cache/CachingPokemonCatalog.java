@@ -28,15 +28,19 @@ public class CachingPokemonCatalog implements PokemonCatalogPort {
 
   public static final String PAGES = "pokemon-pages";
   public static final String DETAILS = "pokemon-details";
+  public static final String NAMES = "pokemon-names";
 
   private final PokemonCatalogPort delegate;
   private final Cache pages;
   private final Cache details;
+  private final Cache names;
 
-  public CachingPokemonCatalog(PokemonCatalogPort delegate, Cache pages, Cache details) {
+  public CachingPokemonCatalog(
+      PokemonCatalogPort delegate, Cache pages, Cache details, Cache names) {
     this.delegate = delegate;
     this.pages = pages;
     this.details = details;
+    this.names = names;
   }
 
   @Override
