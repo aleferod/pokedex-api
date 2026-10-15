@@ -9,4 +9,10 @@ public record CreateTaskRequest(
     @NotBlank @Size(max = 120) String title,
     @Size(max = 2000) String description,
     TaskStatus status,
-    LocalDate dueDate) {}
+    LocalDate dueDate) {
+
+  /** Trimmed before validation: the title's limits apply to its trimmed form. */
+  public CreateTaskRequest {
+    title = title == null ? null : title.strip();
+  }
+}

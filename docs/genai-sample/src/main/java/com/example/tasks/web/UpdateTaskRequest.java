@@ -11,4 +11,10 @@ public record UpdateTaskRequest(
     @Size(max = 2000) String description,
     @NotNull TaskStatus status,
     LocalDate dueDate,
-    @NotNull Long version) {}
+    @NotNull Long version) {
+
+  /** Trimmed before validation: the title's limits apply to its trimmed form. */
+  public UpdateTaskRequest {
+    title = title == null ? null : title.strip();
+  }
+}
