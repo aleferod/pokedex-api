@@ -14,7 +14,7 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 3. Integration
 
-- [ ] 3.1 Write `DemoDataSeedIT` with a test seed file (#1–#3, #25) and WireMock (D5). Verify: green with full `verify`.
+- [x] 3.1 Write `DemoDataSeedIT` with a test seed file (#1–#3, #25) and WireMock (D5). Verify: green with full `verify`.
 - [ ] 3.2 Update the README:
   - a demo section with the credentials table and the never-public warning
   - Quick start
