@@ -68,6 +68,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- TestRestTemplate is built on RestTemplateBuilder, its own module in Boot 4 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-restclient</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security-test</artifactId>
             <scope>test</scope>
