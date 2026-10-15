@@ -19,7 +19,7 @@
   - how edge cases, authentication and validation are handled
   - how this project was built with AI (workflow and a table of real mistakes)
   - Verify: every correction in the diff from the raw output appears in the table.
-- [ ] 3.2 Add the `GenAI sample` CI job and link `docs/GENAI.md` from the README. Verify: lychee offline shows no broken links.
+- [x] 3.2 Add the `GenAI sample` CI job and link `docs/GENAI.md` from the README. Verify: lychee offline shows no broken links.
 
 ## 4. Verification
 
