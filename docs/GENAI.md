@@ -127,7 +127,7 @@ private TaskEntity owned(String username, UUID id) {
 }
 ```
 
-**Provenance.** The history of this change shows exactly what the model produced and what review changed:
+**Provenance.** The commits of [pull request #9](https://github.com/aleferod/pokedex-api/pull/9/commits) show exactly what the model produced and what review changed. They're squashed on `main`, but the PR keeps each one:
 - the prompt was committed first, on its own
 - the raw output was committed **unmodified** (`fce45e5`): not compiled, run or reviewed
 - each correction is a separate `fix(genai-sample):` commit
