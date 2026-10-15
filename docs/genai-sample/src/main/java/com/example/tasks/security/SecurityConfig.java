@@ -1,6 +1,8 @@
 package com.example.tasks.security;
 
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,13 +15,30 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import tools.jackson.databind.json.JsonMapper;
 
 @Configuration
 public class SecurityConfig {
 
   @Bean
-  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+  SecurityFilterChain securityFilterChain(HttpSecurity http, JsonMapper json) throws Exception {
+    // Bearer entry point: 401 plus the RFC 6750 challenge (error="invalid_token" for bad tokens)
+    AuthenticationEntryPoint bearer = new BearerTokenAuthenticationEntryPoint();
+    AuthenticationEntryPoint problem =
+        (request, response, exception) -> {
+          bearer.commence(request, response, exception);
+          Map<String, Object> body = new LinkedHashMap<>();
+          body.put("type", "about:blank");
+          body.put("title", "Unauthorized");
+          body.put("status", HttpStatus.UNAUTHORIZED.value());
+          body.put("detail", "A valid bearer token is required.");
+          body.put("instance", request.getRequestURI());
+          response.setContentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE);
+          json.writeValue(response.getOutputStream(), body);
+        };
     http.csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
@@ -27,19 +46,7 @@ public class SecurityConfig {
             oauth2 ->
                 oauth2
                     .jwt(jwt -> {})
-                    .authenticationEntryPoint(
-                        (request, response, exception) -> {
-                          response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                          response.setContentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE);
-                          response
-                              .getWriter()
-                              .write(
-                                  "{\"type\":\"about:blank\",\"title\":\"Unauthorized\",\"status\":401,"
-                                      + "\"detail\":\"A valid bearer token is required.\","
-                                      + "\"instance\":\""
-                                      + request.getRequestURI()
-                                      + "\"}");
-                        }));
+                    .authenticationEntryPoint(problem));
     return http.build();
   }
 

@@ -45,8 +45,10 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(UnknownUserException.class)
-  ProblemDetail unknownUser(UnknownUserException e) {
-    return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Unknown user");
+  ResponseEntity<ProblemDetail> unknownUser(UnknownUserException e) {
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+        .header(HttpHeaders.WWW_AUTHENTICATE, "Bearer error=\"invalid_token\"")
+        .body(ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Unknown user"));
   }
 
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
