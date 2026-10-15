@@ -1,7 +1,9 @@
 package com.ballastlane.pokedex.adapter.out.cache;
 
 import com.ballastlane.pokedex.application.port.out.pokemon.PokemonCatalogPort;
+import com.ballastlane.pokedex.domain.pokemon.CatalogName;
 import com.ballastlane.pokedex.domain.pokemon.PokemonDetail;
+import com.ballastlane.pokedex.domain.pokemon.PokemonId;
 import com.ballastlane.pokedex.domain.pokemon.PokemonIdentifier;
 import com.ballastlane.pokedex.domain.pokemon.PokemonSummary;
 import com.ballastlane.pokedex.domain.shared.Page;
@@ -87,5 +89,15 @@ public class CachingPokemonCatalog implements PokemonCatalogPort {
       }
       throw wrapped;
     }
+  }
+
+  @Override
+  public List<CatalogName> findAllNames() {
+    throw new UnsupportedOperationException("not yet");
+  }
+
+  @Override
+  public List<PokemonSummary> findSummaries(List<PokemonId> ids) {
+    throw new UnsupportedOperationException("not yet");
   }
 }

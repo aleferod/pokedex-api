@@ -8,7 +8,9 @@ import com.ballastlane.pokedex.adapter.out.pokeapi.dto.ResourceListDto;
 import com.ballastlane.pokedex.adapter.out.pokeapi.evolution.EvolutionConditions;
 import com.ballastlane.pokedex.application.port.out.pokemon.CatalogUnavailableException;
 import com.ballastlane.pokedex.application.port.out.pokemon.PokemonCatalogPort;
+import com.ballastlane.pokedex.domain.pokemon.CatalogName;
 import com.ballastlane.pokedex.domain.pokemon.PokemonDetail;
+import com.ballastlane.pokedex.domain.pokemon.PokemonId;
 import com.ballastlane.pokedex.domain.pokemon.PokemonIdentifier;
 import com.ballastlane.pokedex.domain.pokemon.PokemonSummary;
 import com.ballastlane.pokedex.domain.shared.Page;
@@ -78,5 +80,15 @@ public class PokeApiCatalogAdapter implements PokemonCatalogPort {
     PokemonDto pokemon = client.pokemon(PokeApiMapper.idFromUrl(entry.url()));
     PokemonSpeciesDto species = client.species(PokeApiMapper.idFromUrl(pokemon.species().url()));
     return PokeApiMapper.toSummary(pokemon, species);
+  }
+
+  @Override
+  public List<CatalogName> findAllNames() {
+    throw new UnsupportedOperationException("not yet");
+  }
+
+  @Override
+  public List<PokemonSummary> findSummaries(List<PokemonId> ids) {
+    throw new UnsupportedOperationException("not yet");
   }
 }

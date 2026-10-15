@@ -9,7 +9,7 @@ TDD: each `test:` commit is red on assertions against stubs, and the `feat:` com
 
 ## 2. Use case
 
-- [ ] 2.1 Write the search tests in `ListPokemonUseCaseTest` (D2). Add the two port methods and `ListPokemon.search` as stubs. Verify: red.
+- [x] 2.1 Write the search tests in `ListPokemonUseCaseTest` (D2). Add the two port methods and `ListPokemon.search` as stubs. Verify: red.
 - [ ] 2.2 Implement `ListPokemonUseCase.search`. Verify: 2.1 green.
 
 ## 3. Adapters

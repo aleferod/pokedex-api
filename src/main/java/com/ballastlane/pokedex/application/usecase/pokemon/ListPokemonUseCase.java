@@ -2,6 +2,7 @@ package com.ballastlane.pokedex.application.usecase.pokemon;
 
 import com.ballastlane.pokedex.application.port.in.pokemon.ListPokemon;
 import com.ballastlane.pokedex.application.port.out.pokemon.PokemonCatalogPort;
+import com.ballastlane.pokedex.domain.pokemon.PokemonNameQuery;
 import com.ballastlane.pokedex.domain.pokemon.PokemonSummary;
 import com.ballastlane.pokedex.domain.shared.Page;
 import com.ballastlane.pokedex.domain.shared.PageRequest;
@@ -22,5 +23,10 @@ public class ListPokemonUseCase implements ListPokemon {
   @Override
   public Page<PokemonSummary> list(PageRequest request) {
     return catalog.findPage(request);
+  }
+
+  @Override
+  public Page<PokemonSummary> search(PokemonNameQuery query, PageRequest request) {
+    return Page.of(java.util.List.of(), request, 0);
   }
 }
