@@ -145,7 +145,8 @@ class PokemonControllerTest {
     PokemonNameQuery mrMime = PokemonNameQuery.parse("mr-mime").orElseThrow();
     given(listPokemon.search(mrMime, defaults)).willReturn(Page.of(List.of(), defaults, 0));
 
-    MvcTestResult result = mvc.get().uri("/api/v1/pokemon?name=mr%20mime").exchange();
+    MvcTestResult result =
+        mvc.get().uri("/api/v1/pokemon").queryParam("name", "mr mime").exchange();
 
     assertThat(result).hasStatus(HttpStatus.OK);
     then(listPokemon).should().search(mrMime, defaults);
@@ -156,7 +157,7 @@ class PokemonControllerTest {
     PageRequest defaults = new PageRequest(0, 20);
     given(listPokemon.list(defaults)).willReturn(Page.of(List.of(), defaults, 1351));
 
-    MvcTestResult result = mvc.get().uri("/api/v1/pokemon?name=%20").exchange();
+    MvcTestResult result = mvc.get().uri("/api/v1/pokemon").queryParam("name", " ").exchange();
 
     assertThat(result).hasStatus(HttpStatus.OK);
     then(listPokemon).should().list(defaults);

@@ -242,7 +242,7 @@ class PokemonCatalogIT {
     stubDetails(1, 2, 3);
 
     client.get().uri("/api/v1/pokemon?name=saur&size=3").exchange().expectStatus().isOk();
-    client.get().uri("/api/v1/pokemon?name=ivy").exchange().expectStatus().isOk();
+    client.get().uri("/api/v1/pokemon?name=ivysaur").exchange().expectStatus().isOk();
 
     POKEAPI.verify(
         1,

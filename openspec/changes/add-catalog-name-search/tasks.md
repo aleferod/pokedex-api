@@ -20,7 +20,7 @@ TDD: each `test:` commit is red on assertions against stubs, and the `feat:` com
 ## 4. Endpoint
 
 - [x] 4.1 Write the controller slice tests and `PokemonCatalogIT` search tests (D5, D6). Verify: red.
-- [ ] 4.2 Accept `name` in `PokemonController`, with the OpenAPI documentation. Verify: 4.1 green; `./scripts/verify-in-docker.sh` green (coverage, ArchUnit, Spotless, `-Werror`).
+- [x] 4.2 Accept `name` in `PokemonController`, with the OpenAPI documentation. Verify: 4.1 green; `./scripts/verify-in-docker.sh` green (coverage, ArchUnit, Spotless, `-Werror`).
 
 ## 5. Verification
 
