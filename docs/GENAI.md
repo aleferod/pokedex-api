@@ -170,6 +170,8 @@ The model was Claude (Opus 5.5, through Claude Code), the same assistant that bu
 | 11 | review test | assigned UUID ids and a primitive `@Version` | `TaskEntity implements Persistable`, new until persisted or loaded | Spring Data couldn't tell a new task from a detached one and merged it, adding a SELECT before every INSERT (3 statements per create instead of 2) |
 | 12 | review test | JPQL `(:dueBefore is null or t.dueDate < :dueBefore)` | JPA Specifications, added only for the filters given | PostgreSQL can't type a null bind parameter there, so `?dueBefore=…` without `status` answered **500** |
 
+**The secret scan also flagged the generated tests.** They hard-code two test-only HMAC signing secrets, and gitleaks' generic rule flags both. They aren't credentials, and the raw-output commit has to stay unmodified, so [`.gitleaks.toml`](../.gitleaks.toml) allowlists exactly those two strings under `docs/genai-sample/src/test/`. I checked that any other secret placed there is still caught.
+
 **Patterns in the mistakes:**
 - **Defects 1–6 come from version drift.** The model wrote Spring Boot 3 / Testcontainers 1 idioms for a Boot 4 / Testcontainers 2 project, even though the prompt named the version. A compiler and a real dependency tree catch these immediately. A reviewer reading the code would mostly not.
 - **Defects 7–12 compiled, and the generated tests passed.** They broke the prompt's own requirements or HTTP and SQL details, and only a test written for that edge case found them.
