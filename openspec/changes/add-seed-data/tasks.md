@@ -4,8 +4,8 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 
 ## 1. Accounts with a chosen role
 
-- [ ] 1.1 Write `UserTest` (`provision` keeps the role) and `ProvisionUserUseCaseTest` (D2). Verify: red against stubs.
-- [ ] 1.2 Implement `User.provision`, `ProvisionUser`, `ProvisionUserCommand` and `ProvisionUserUseCase`, and wire it. Verify: 1.1 green; coverage gate green.
+- [x] 1.1 Write `UserTest` (`provision` keeps the role) and `ProvisionUserUseCaseTest` (D2). Verify: red against stubs.
+- [x] 1.2 Implement `User.provision`, `ProvisionUser`, `ProvisionUserCommand` and `ProvisionUserUseCase`, and wire it. Verify: 1.1 green; coverage gate green.
 
 ## 2. Seeder
 
