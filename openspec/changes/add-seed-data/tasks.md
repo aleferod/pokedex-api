@@ -25,12 +25,12 @@ TDD convention as in earlier changes: each `test:` commit is red on assertions, 
 ## 4. Integration verification
 
 - [x] 4.1 `./scripts/verify-in-docker.sh` from a clean `target/`. Verify: exit 0; record counts and coverage.
-- [ ] 4.2 From a fresh clone with `docker compose up --build` against the real PokeAPI:
+- [x] 4.2 From a fresh clone with `docker compose up --build` against the real PokeAPI:
   - `admin` deletes a seeded record (204)
   - `trainer` lists `?tag=starter`
   - restart: no duplicates
   - Verify: as in the spec; `docker compose down -v`.
-- [ ] 4.3 Run `openspec validate add-seed-data --strict` and gitleaks. Verify: valid, no leaks.
+- [x] 4.3 Run `openspec validate add-seed-data --strict` and gitleaks. Verify: valid, no leaks.
 
 ## Workflow follow-up
 
