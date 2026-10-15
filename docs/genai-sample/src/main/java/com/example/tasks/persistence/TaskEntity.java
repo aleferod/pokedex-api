@@ -9,15 +9,24 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PostLoad;
+import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
+import org.springframework.data.domain.Persistable;
 
+/**
+ * A task row. The id is assigned by the application, so the entity tells Spring Data itself
+ * whether it is new ({@link Persistable}); otherwise {@code save} would merge, selecting the row
+ * before every insert.
+ */
 @Entity
 @Table(name = "tasks")
-public class TaskEntity {
+public class TaskEntity implements Persistable<UUID> {
 
   @Id private UUID id;
 
@@ -45,6 +54,8 @@ public class TaskEntity {
   private Instant updatedAt;
 
   @Version private long version;
+
+  @Transient private boolean isNew = true;
 
   protected TaskEntity() {}
 
@@ -80,8 +91,20 @@ public class TaskEntity {
     this.updatedAt = now;
   }
 
+  @Override
   public UUID getId() {
     return id;
+  }
+
+  @Override
+  public boolean isNew() {
+    return isNew;
+  }
+
+  @PostPersist
+  @PostLoad
+  void markNotNew() {
+    this.isNew = false;
   }
 
   public UserEntity getOwner() {
