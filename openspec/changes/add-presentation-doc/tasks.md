@@ -13,7 +13,7 @@ Documentation only. Each task is verified by running what the document claims: t
 
 ## 3. Verification
 
-- [ ] 3.1 Re-run `./scripts/verify-in-docker.sh` to confirm the backend numbers quoted. Run `openspec validate add-presentation-doc --strict` and gitleaks. Verify: BUILD SUCCESS with the quoted counts; valid; no leaks.
+- [x] 3.1 Re-run `./scripts/verify-in-docker.sh` to confirm the backend numbers quoted. Run `openspec validate add-presentation-doc --strict` and gitleaks. Verify: BUILD SUCCESS with the quoted counts; valid; no leaks.
 
 ## Workflow follow-up
 
