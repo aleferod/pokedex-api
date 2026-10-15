@@ -24,7 +24,7 @@ TDD: each `test:` commit is red on assertions against stubs, and the `feat:` com
 
 ## 5. Verification
 
-- [ ] 5.1 Against `docker compose up --build` and the real PokeAPI: `?name=pika`, `?name=mr mime`, `?name=chu&size=5&page=4`, `?name=pi`, and the name list requested once across two searches. Update the README (Catalog section, endpoints table). Run `openspec validate add-catalog-name-search --strict` and gitleaks. Verify: as specified; valid; no leaks.
+- [x] 5.1 Against `docker compose up --build` and the real PokeAPI: `?name=pika`, `?name=mr mime`, `?name=chu&size=5&page=4`, `?name=pi`, and the name list requested once across two searches. Update the README (Catalog section, endpoints table). Run `openspec validate add-catalog-name-search --strict` and gitleaks. Verify: as specified; valid; no leaks.
 
 ## Workflow follow-up
 
