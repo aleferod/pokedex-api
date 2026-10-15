@@ -13,7 +13,7 @@
 
 ## 3. Write-up and CI
 
-- [ ] 3.1 Complete `docs/GENAI.md`:
+- [x] 3.1 Complete `docs/GENAI.md`:
   - validation method and results
   - corrections table (before, after, why)
   - how edge cases, authentication and validation are handled
