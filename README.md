@@ -1,5 +1,7 @@
 # Pokédex API
 
+> **This repository has moved.** The API now lives in [aleferod/pokedex](https://github.com/aleferod/pokedex), as [`backend/`](https://github.com/aleferod/pokedex/tree/main/backend) next to the web app, with this repository's history. This repository is archived and read-only. Its [pull requests](https://github.com/aleferod/pokedex-api/pulls?q=is%3Apr+is%3Amerged) still show each change's red/green commits.
+
 [![CI](https://github.com/aleferod/pokedex-api/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aleferod/pokedex-api/actions/workflows/ci.yml)
 ![Java 21](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot 4.1](https://img.shields.io/badge/Spring%20Boot-4.1-6db33f)
